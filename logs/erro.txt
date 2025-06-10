@@ -1,0 +1,11 @@
+[07-06-202553 11:45:53] Um erro inesperado ocorreu no sistema principal: null
+[07-06-202553 11:45:53] Por favor, verifique o log de erros para mais detalhes.
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:947)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at view.EstacionamentoView.menuEstacionamento(EstacionamentoView.java:32)
+	at Main.main(Main.java:65)
+[10-06-202541 16:28:41] Um erro inesperado ocorreu no sistema principal: null
+[10-06-202541 16:28:41] Por favor, verifique o log de erros para mais detalhes.
