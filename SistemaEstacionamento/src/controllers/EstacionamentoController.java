@@ -1,10 +1,10 @@
 package controllers;
-
 import factory.EstacionamentoFactory;
 import model.Carro;
 import model.Estacionamento;
 import model.Moto;
 import model.Vaga;
+import factory.VagaOcupadaFactory;
 
 public class EstacionamentoController {
 
@@ -18,7 +18,6 @@ public class EstacionamentoController {
         try {
             estacionamentos = EstacionamentoFactory.criarEstacionamento(nome, numeroDeVagas, endereco, telefone, email);
         } catch (Exception e) {
-            System.err.println("[Controller] Erro inesperado ao cadastrar estacionamento: " + e.getMessage());
             throw new Exception("Erro ao cadastrar estacionamento: " + e.getMessage(), e);
         }
 
@@ -31,10 +30,10 @@ public class EstacionamentoController {
         if (vaga != null) {
             vaga.alterarDisponibilidade(false);
             carro.setIdVaga(vaga.getNumero());
+            VagaOcupadaController.adicionarVagaOcupada(vaga, carro);
             return "Carro alocado com sucesso!";
 
         } else {
-            System.err.println("[Controller] Erro inesperado sem vagas: ");
             throw new Exception("Sem vagas disponiveis");
         }
     }
@@ -54,6 +53,7 @@ public class EstacionamentoController {
             vaga.alterarDisponibilidade(false);
         }
         if (vaga != null) {
+            VagaOcupadaController.adicionarVagaOcupada(vaga, moto);
             return "Moto alocada com sucesso!";
         } else {;
             throw new Exception("Sem vagas disponíveis.");
