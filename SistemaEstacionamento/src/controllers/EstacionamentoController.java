@@ -55,8 +55,7 @@ public class EstacionamentoController {
         }
         if (vaga != null) {
             return "Moto alocada com sucesso!";
-        } else {
-            System.err.println("[Controller] Erro inesperado sem vagas disponiveis: ");
+        } else {;
             throw new Exception("Sem vagas disponíveis.");
         }
     }

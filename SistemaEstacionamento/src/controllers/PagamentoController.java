@@ -38,7 +38,6 @@ public class PagamentoController {
             }
             return "pagamento nao criado!";
         } catch (IllegalFormatException e) {
-            System.err.println("[Controller] Erro inesperado argumentos errados de pagamento: " + e.getMessage());
             throw new Exception("Argumentos errados de pagamento" + e.getMessage());
         }
 

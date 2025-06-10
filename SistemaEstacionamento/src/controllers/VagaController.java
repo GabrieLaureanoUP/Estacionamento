@@ -13,7 +13,7 @@ public class VagaController {
     private List<Vaga> vagas = new ArrayList<>();
 
     public List<Vaga> criarVagas(int numeroDeVagas) throws IOException, ClassNotFoundException {
-        vagas = VagaDAO.carregar();
+
         try {
             for (int i = 1; i <= numeroDeVagas; i++) {
                 vagas.add(VagaFactory.criarVaga(i, StatusVaga.LIVRE));
@@ -75,7 +75,6 @@ public class VagaController {
         try {
             this.vagas = vagas;
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao definir vagas: " + e.getMessage());
             throw new Exception("Erro ao definir vagas: " + e.getMessage(), e);
         }
     }
@@ -84,9 +83,16 @@ public class VagaController {
         try {
             VagaDAO.salvar(vagas);
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao salvar vagas: " + e.getMessage());
             throw new Exception("Erro ao salvar vagas: " + e.getMessage(), e);
         }
 
+    }
+
+    public List<Vaga> carregar() throws Exception {
+        try {
+            return VagaDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar vagas.", e);
+        }
     }
 }

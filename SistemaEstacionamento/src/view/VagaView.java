@@ -1,7 +1,6 @@
 package view;
 
 import controllers.VagaController;
-import dal.VagaDAO;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,13 +20,16 @@ public class VagaView {
         int opcao;
         List<Vaga> lista = new ArrayList<>();
         try {
-            lista = VagaDAO.carregar();
+            lista = vagaController.carregar();
         } catch (Exception e) {
             System.err.println("Erro ao carregar a lista " + e.getMessage());
         }
 
+        vagaController.setVagas(lista);
+
         do {
             System.out.println("\n--- Menu de Vagas ---");
+            //tirar o 1
             System.out.println("1. Criar Vagas");
             System.out.println("2. Listar Vagas");
             System.out.println("3. Buscar Vaga por Número");
