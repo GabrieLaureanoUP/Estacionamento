@@ -12,7 +12,7 @@ import model.Ticket;
 
 public class TicketDAO {
 
-    private static final String CAMINHO = "src/dados";
+    private static final String CAMINHO = "SistemaEstacionamento/src/dados";
 
     public static void salvar(List<Ticket> tickets) throws IOException {
         File diretorio = new File(CAMINHO);
