@@ -1,4 +1,5 @@
 package controllers;
+
 import factory.EstacionamentoFactory;
 import model.Carro;
 import model.Estacionamento;
@@ -39,6 +40,7 @@ public class EstacionamentoController {
     }
 
     public String alocarMoto(Moto moto) throws Exception {
+<<<<<<< HEAD
         try{
             Vaga vaga = estacionamentos.getVagas().stream()
                     .filter(Vaga::estaDisponivelParaMoto)
@@ -60,6 +62,26 @@ public class EstacionamentoController {
             return "Não há vagas disponíveis para alocar a moto.";
         }catch (Exception e) {
             throw new Exception("Erro ao alocar moto: " + e.getMessage(), e);
+=======
+        Vaga vaga = estacionamentos.getVagas().stream()
+                .filter(Vaga::estaDisponivelParaMoto)
+                .findFirst()
+                .orElse(null);
+        if (vaga != null) {
+            vaga.alterarDisponibilidadeMoto(false);
+        }
+        if (vaga == null) {
+            vaga = estacionamentos.getVagas().stream()
+                    .filter(Vaga::estaDisponivel).findFirst().orElse(null);
+            vaga.alterarDisponibilidadeMoto(true);
+            vaga.alterarDisponibilidade(false);
+        }
+        if (vaga != null) {
+            VagaOcupadaController.adicionarVagaOcupada(vaga, moto);
+            return "Moto alocada com sucesso!";
+        } else {
+            throw new Exception("Sem vagas disponíveis.");
+>>>>>>> 72949fd7ee9ba7277c6aa48afa5ec54b70841736
         }
     }
 }

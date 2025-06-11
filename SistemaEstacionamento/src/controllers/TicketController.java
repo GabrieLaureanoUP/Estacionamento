@@ -91,6 +91,14 @@ public class TicketController {
         }
     }
 
+    public void setTickets(List<Ticket> tickets) throws Exception {
+        try {
+            this.tickets = tickets;
+        } catch (Exception e) {
+            throw new Exception("Erro ao definir tickets: " + e.getMessage(), e);
+        }
+    }
+
     public void salvar() throws IOException, ClassNotFoundException {
         try {
             TicketDAO.salvar(tickets);
