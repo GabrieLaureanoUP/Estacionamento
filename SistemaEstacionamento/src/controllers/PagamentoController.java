@@ -77,6 +77,13 @@ public class PagamentoController {
         }
     }
 
+    public void setPagamentos(List<Pagamento> pagamentos) throws Exception {
+        if (pagamentos == null || pagamentos.isEmpty()) {
+            throw new Exception("Lista de pagamentos não pode ser nula ou vazia.");
+        }
+        this.pagamentos = pagamentos;
+    }
+
     public void salvar() throws IOException, ClassNotFoundException {
         PagamentoDAO.salvar(pagamentos);
     }

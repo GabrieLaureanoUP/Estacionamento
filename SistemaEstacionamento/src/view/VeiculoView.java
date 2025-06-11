@@ -28,6 +28,12 @@ public class VeiculoView {
             System.err.println("Erro ao carregar a lista " + e.getMessage());
         }
 
+        try {
+            veiculoController.setVeiculos(lista);
+        } catch (Exception e) {
+            System.err.println("Erro ao definir veículos: " + e.getMessage());
+        }
+
         do {
             exibirMenuVeiculo();
             opcao = lerOpcao();

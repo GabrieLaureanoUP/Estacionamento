@@ -79,7 +79,7 @@ public class VeiculoController {
         }
     }
 
-    public Veiculo atualizarVeiculo(String placa, String modelo, String cor)throws Exception {
+    public Veiculo atualizarVeiculo(String placa, String modelo, String cor) throws Exception {
         try {
             Veiculo veiculo = buscarVeiculoPorPlaca(placa);
             if (veiculo != null) {
@@ -93,11 +93,19 @@ public class VeiculoController {
         }
     }
 
+    public void setVeiculos(List<Veiculo> veiculos) throws Exception {
+        try {
+            VeiculoController.veiculos = veiculos;
+        } catch (Exception e) {
+            throw new Exception("Erro ao definir veículos: " + e.getMessage(), e);
+        }
+    }
+
     public void salvar() throws IOException, ClassNotFoundException {
         try {
             VeiculoDAO.salvar(veiculos);
         } catch (IOException e) {
-            throw e; 
+            throw e;
         } catch (Exception e) { // Para qualquer outra exceção inesperada
             throw new IOException("Erro inesperado ao salvar dados.", e); // Envolve em IOException para consistência
         }

@@ -35,7 +35,11 @@ public class TicketView {
             System.err.println("Erro ao carregar a lista " + e.getMessage());
         }
 
-        ticketController.(lista);
+        try {
+            ticketController.setTickets(lista);
+        } catch (Exception e) {
+            System.err.println("Erro ao definir tickets: " + e.getMessage());
+        }
 
         do {
             System.out.println("\n--- Menu de Tickets ---");
