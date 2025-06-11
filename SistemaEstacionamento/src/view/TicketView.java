@@ -78,7 +78,7 @@ public class TicketView {
         try {
             System.out.print("Placa do veículo: ");
             String placa = scanner.nextLine();
-            Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
+            Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
 
             if (veiculo == null) {
                 System.out.println("Veículo não encontrado!");
@@ -115,11 +115,9 @@ public class TicketView {
         try {
             System.out.print("ID do ticket para atualizar: ");
             int id = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
-
-            System.out.print("Placa do veículo: ");
+            scanner.nextLine(); // Limpar buffer            System.out.print("Placa do veículo: ");
             String placa = scanner.nextLine();
-            Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
+            Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
 
             if (veiculo == null) {
                 System.out.println("Veículo não encontrado!");

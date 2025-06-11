@@ -10,6 +10,15 @@ import model.Vaga;
 public class EstacionamentoController {
 
     public Estacionamento estacionamentos;
+    private VagaOcupadaController vagaOcupadaController;
+
+    public EstacionamentoController() {
+        this.vagaOcupadaController = new VagaOcupadaController();
+    }
+
+    public EstacionamentoController(VagaOcupadaController vagaOcupadaController) {
+        this.vagaOcupadaController = vagaOcupadaController;
+    }
 
     public void cadastrarEstacionamento(String nome, int numeroDeVagas, String endereco, String telefone, String email) throws Exception, IllegalStateException {
         if (estacionamentos != null) {
@@ -31,7 +40,7 @@ public class EstacionamentoController {
             if (vaga != null) {
                 vaga.alterarDisponibilidade(false);
                 carro.setIdVaga(vaga.getNumero());
-                VagaOcupadaController.adicionarVagaOcupada(vaga, carro);
+                vagaOcupadaController.adicionarVagaOcupada(vaga, carro);
                 return "Carro alocado com sucesso!";
             }
             return "Não há vagas disponíveis para alocar o carro.";
@@ -56,7 +65,7 @@ public class EstacionamentoController {
                 vaga.alterarDisponibilidade(false);
             }
             if (vaga != null) {
-                VagaOcupadaController.adicionarVagaOcupada(vaga, moto);
+                vagaOcupadaController.adicionarVagaOcupada(vaga, moto);
                 return "Moto alocada com sucesso!";
             }
             return "Não há vagas disponíveis para alocar a moto.";

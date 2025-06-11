@@ -11,9 +11,13 @@ import model.Veiculo;
 
 public class VagaOcupadaController {
 
-    private static List<VagaOcupada> vagasOcupadas = new ArrayList<>();
+    private List<VagaOcupada> vagasOcupadas;
 
-    public static String adicionarVagaOcupada(Vaga vaga, Veiculo veiculo) throws Exception, IllegalStateException {
+    public VagaOcupadaController() {
+        vagasOcupadas = new ArrayList<>();
+    }
+
+    public String adicionarVagaOcupada(Vaga vaga, Veiculo veiculo) throws Exception, IllegalStateException {
         try {
             vagasOcupadas.add(VagaOcupadaFactory.criarVagaOcupada(vaga, veiculo));
             return "Vaga ocupada adicionada com sucesso!";
@@ -22,11 +26,11 @@ public class VagaOcupadaController {
         }
     }
 
-    public static List<VagaOcupada> listarVagasOcupadas() {
+    public List<VagaOcupada> listarVagasOcupadas() {
         return vagasOcupadas;
     }
 
-    public static VagaOcupada buscarVagaOcupadaPorNumero(int numeroVaga) {
+    public VagaOcupada buscarVagaOcupadaPorNumero(int numeroVaga) {
         for (VagaOcupada vagaOcupada : vagasOcupadas) {
             if (vagaOcupada.getVaga().getNumero() == numeroVaga) {
                 return vagaOcupada;
@@ -36,20 +40,18 @@ public class VagaOcupadaController {
     }
 
     public void salvar() throws IOException, ClassNotFoundException {
-        try {
-            VagaOcupadaDAO.salvar(vagasOcupadas);
-        } catch (IOException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new IOException("Erro inesperado ao salvar dados.", e);
-        }
+        VagaOcupadaDAO.salvar(vagasOcupadas);
     }
 
     public List<VagaOcupada> carregar() throws Exception {
+<<<<<<< HEAD
+        return VagaOcupadaDAO.carregar();
+=======
         try {
             return VagaOcupadaDAO.carregar();
         } catch (Exception e) {
             throw new Exception("Erro ao carregar vagas ocupadas.", e);
         }
+>>>>>>> 66c91bec8c16623c21b1783d786970d539a2f2ec
     }
 }

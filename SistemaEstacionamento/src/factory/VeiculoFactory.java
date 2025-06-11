@@ -39,23 +39,16 @@ public abstract class VeiculoFactory {
     }
 
     public static Moto criarMoto(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
-        String placaSub;
-        String placaTraco;
-        int placaNumero;
-
-        try {
-            placaSub = placa.substring(0, 3);
-            placaTraco = placa.substring(3, 4);
-            placaNumero = Integer.parseInt(placa.substring(4, 8));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Placa deve conter apenas letras e números válidos.");
+        // Verificar se os parâmetros básicos são válidos
+        if (placa == null || placa.isEmpty()) {
+            throw new IllegalArgumentException("Placa não pode ser nula ou vazia.");
         }
 
-        if (placaSub.isEmpty()) {
-            throw new IllegalArgumentException("Placa deve seguir o formato AAA-0000.");
+        if (placa.length() != 8) {
+            throw new IllegalArgumentException("Placa deve ter exatamente 8 caracteres (incluindo o hífen).");
         }
 
-        if (placaTraco.isEmpty() || !placaTraco.equals("-")) {
+        if (placa.charAt(3) != '-') {
             throw new IllegalArgumentException("Placa deve seguir o formato AAA-0000.");
         }
 

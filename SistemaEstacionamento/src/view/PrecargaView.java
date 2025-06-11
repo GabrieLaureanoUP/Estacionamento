@@ -40,16 +40,15 @@ public class PrecargaView {
                     "Av. Principal, 123",
                     "(11) 98765-4321",
                     "contato@estacionamentoteste.com.br");
-
             veiculoController.criarCarro("ABC-1234", "Fiat Uno", "Vermelho", LocalDateTime.now());
             veiculoController.criarCarro("DEF-5678", "Honda Civic", "Preto", LocalDateTime.now());
             veiculoController.criarCarro("GHI-9012", "Toyota Corolla", "Prata", LocalDateTime.now());
             veiculoController.criarMoto("JKL-3456", "Honda CG 150", "Azul", LocalDateTime.now());
             veiculoController.criarMoto("MNO-7890", "Yamaha Fazer", "Preta", LocalDateTime.now());
 
-            Veiculo carro1 = VeiculoController.buscarVeiculoPorPlaca("ABC-1234");
-            Veiculo carro2 = VeiculoController.buscarVeiculoPorPlaca("DEF-5678");
-            Veiculo moto1 = VeiculoController.buscarVeiculoPorPlaca("JKL-3456");
+            Veiculo carro1 = veiculoController.buscarVeiculoPorPlaca("ABC-1234");
+            Veiculo carro2 = veiculoController.buscarVeiculoPorPlaca("DEF-5678");
+            Veiculo moto1 = veiculoController.buscarVeiculoPorPlaca("JKL-3456");
 
             if (carro1 instanceof Carro && carro2 instanceof Carro && moto1 instanceof Moto) {
                 estacionamentoController.alocarCarro((Carro) carro1);
