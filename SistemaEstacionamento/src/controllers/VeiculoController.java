@@ -10,15 +10,10 @@ import model.Veiculo;
 
 public class VeiculoController {
 
-    static List<Veiculo> veiculos;
+    private List<Veiculo> veiculos;
 
     public VeiculoController() throws Exception {
-
-        try {
-            veiculos = new ArrayList<>();
-        } catch (Exception e) {
-            throw new Exception("Erro ao inicializar VeiculoController: " + e.getMessage(), e);
-        }
+        veiculos = new ArrayList<>();
     }
 
     public void criarCarro(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
@@ -67,75 +62,44 @@ public class VeiculoController {
     }
 
     public List<Veiculo> getVeiculos() throws Exception {
-        try {
-            return veiculos;
-        } catch (Exception e) {
-            throw new Exception("Erro ao obter veículos: " + e.getMessage(), e);
-        }
-
+        return veiculos;
     }
 
-    public static Veiculo buscarVeiculoPorPlaca(String placa) throws Exception {
-        try {
-            for (Veiculo veiculo : veiculos) {
-                if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
-                    return veiculo;
-                }
+    public Veiculo buscarVeiculoPorPlaca(String placa) throws Exception {
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
+                return veiculo;
             }
-            return null;
-        } catch (Exception e) {
-            throw new Exception("Erro ao obter veículos: " + e.getMessage(), e);
         }
+        return null;
     }
 
     public void removerVeiculo(String placa) throws Exception {
-        try {
-            Veiculo veiculo = buscarVeiculoPorPlaca(placa);
-            if (veiculo != null) {
-                veiculos.remove(veiculo);
-            }
-        } catch (Exception e) {
-            throw new Exception("Erro ao remover veículo com placa " + placa + ": " + e.getMessage(), e);
+        Veiculo veiculo = buscarVeiculoPorPlaca(placa);
+        if (veiculo != null) {
+            veiculos.remove(veiculo);
         }
     }
 
     public Veiculo atualizarVeiculo(String placa, String modelo, String cor) throws Exception {
-        try {
-            Veiculo veiculo = buscarVeiculoPorPlaca(placa);
-            if (veiculo != null) {
-                veiculo.setModelo(modelo);
-                veiculo.setCor(cor);
-                return veiculo;
-            }
-            return null;
-        } catch (Exception e) {
-            throw new Exception("Erro ao atualizar veículo com placa " + placa + ": " + e.getMessage(), e);
+        Veiculo veiculo = buscarVeiculoPorPlaca(placa);
+        if (veiculo != null) {
+            veiculo.setModelo(modelo);
+            veiculo.setCor(cor);
+            return veiculo;
         }
+        return null;
     }
 
     public void setVeiculos(List<Veiculo> veiculos) throws Exception {
-        try {
-            VeiculoController.veiculos = veiculos;
-        } catch (Exception e) {
-            throw new Exception("Erro ao definir veículos: " + e.getMessage(), e);
-        }
+        this.veiculos = veiculos;
     }
 
-    public void salvar() throws IOException, ClassNotFoundException {
-        try {
-            VeiculoDAO.salvar(veiculos);
-        } catch (IOException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new IOException("Erro inesperado ao salvar dados.", e);
-        }
+    public void salvar() throws IOException {
+        VeiculoDAO.salvar(veiculos);
     }
 
     public List<Veiculo> carregar() throws Exception {
-        try {
-            return VeiculoDAO.carregar();
-        } catch (Exception e) {
-            throw new Exception("Erro ao carregar vagas.", e);
-        }
+        return VeiculoDAO.carregar();
     }
 }

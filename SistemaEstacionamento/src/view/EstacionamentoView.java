@@ -17,10 +17,16 @@ import model.Veiculo;
 public class EstacionamentoView {
 
     private final EstacionamentoController estacionamentoController;
+    private final VeiculoController veiculoController;
+    private final VagaOcupadaController vagaOcupadaController;
     private final Scanner scanner;
 
-    public EstacionamentoView(EstacionamentoController estacionamentoController) {
+    public EstacionamentoView(EstacionamentoController estacionamentoController,
+            VeiculoController veiculoController,
+            VagaOcupadaController vagaOcupadaController) {
         this.estacionamentoController = estacionamentoController;
+        this.veiculoController = veiculoController;
+        this.vagaOcupadaController = vagaOcupadaController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -94,10 +100,9 @@ public class EstacionamentoView {
                 System.out.println("Estacionamento não cadastrado! Cadastre um estacionamento primeiro.");
                 return;
             }
-
             System.out.print("Placa do carro: ");
             String placa = scanner.nextLine();
-            Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
+            Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
             if (veiculo == null || !(veiculo instanceof Carro)) {
                 System.out.println("Carro não encontrado! Certifique-se de cadastrar o veículo primeiro.");
                 return;
@@ -116,10 +121,9 @@ public class EstacionamentoView {
                 System.out.println("Estacionamento não cadastrado! Cadastre um estacionamento primeiro.");
                 return;
             }
-
             System.out.print("Placa da moto: ");
             String placa = scanner.nextLine();
-            Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
+            Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
             if (veiculo == null || !(veiculo instanceof Moto)) {
                 System.out.println("Moto não encontrada! Certifique-se de cadastrar o veículo primeiro.");
                 return;
@@ -156,7 +160,7 @@ public class EstacionamentoView {
 
     public void listarVagasOcupadas() {
         try {
-            List<VagaOcupada> vagasOcupadas = VagaOcupadaController.listarVagasOcupadas();
+            List<VagaOcupada> vagasOcupadas = vagaOcupadaController.listarVagasOcupadas();
             System.out.println("\n=== Lista de Vagas Ocupadas ===");
 
             if (vagasOcupadas.isEmpty()) {

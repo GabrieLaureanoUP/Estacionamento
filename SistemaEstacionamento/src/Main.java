@@ -3,6 +3,7 @@ import controllers.EstacionamentoController;
 import controllers.PagamentoController;
 import controllers.TicketController;
 import controllers.VagaController;
+import controllers.VagaOcupadaController;
 import controllers.VeiculoController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,25 +21,24 @@ public class Main {
         Log.setError();
 
         Scanner scanner = new Scanner(System.in);
-
         try {
-            EstacionamentoController estacionamentoController = new EstacionamentoController();
+            VagaOcupadaController vagaOcupadaController = new VagaOcupadaController();
+            EstacionamentoController estacionamentoController = new EstacionamentoController(vagaOcupadaController);
             VeiculoController veiculoController = new VeiculoController();
             TicketController ticketController = new TicketController();
             VagaController vagaController = new VagaController();
             PagamentoController pagamentoController = new PagamentoController();
+
             vagaController.setVagas(estacionamentoController.estacionamentos != null
                     ? estacionamentoController.estacionamentos.getVagas() : null);
             VeiculoView veiculoView = new VeiculoView(veiculoController);
-            EstacionamentoView estacionamentoView = new EstacionamentoView(estacionamentoController);
+            EstacionamentoView estacionamentoView = new EstacionamentoView(estacionamentoController, veiculoController, vagaOcupadaController);
             TicketView ticketView = new TicketView(ticketController, veiculoController, vagaController);
             PagamentoView pagamentoView = new PagamentoView(pagamentoController, ticketController);
             PrecargaView precargaView = new PrecargaView(estacionamentoController, veiculoController, ticketController, pagamentoController);
 
-            // Limpar arquivos serializados antes de executar a pré-carga
             DadosUtil.limparArquivosSerializados();
 
-            // Executar pré-carga de dados automaticamente ao iniciar
             precargaView.carregarDadosTeste();
 
             int opcao = -1;

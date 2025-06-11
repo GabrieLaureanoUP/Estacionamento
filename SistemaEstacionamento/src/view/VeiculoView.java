@@ -111,7 +111,7 @@ public class VeiculoView {
         System.out.print("Placa (XXX-0000): ");
         String placa = scanner.nextLine().toUpperCase();
 
-        if (VeiculoController.buscarVeiculoPorPlaca(placa) != null) {
+        if (veiculoController.buscarVeiculoPorPlaca(placa) != null) {
             System.out.println("Erro: Já existe um veículo com esta placa!");
             return;
         }
@@ -130,7 +130,7 @@ public class VeiculoView {
             System.out.print("Placa (XXX-0000): ");
             String placa = scanner.nextLine().toUpperCase();
 
-            if (VeiculoController.buscarVeiculoPorPlaca(placa) != null) {
+            if (veiculoController.buscarVeiculoPorPlaca(placa) != null) {
                 System.out.println("Erro: Já existe um veículo com esta placa!");
                 return;
             }
@@ -151,7 +151,7 @@ public class VeiculoView {
         System.out.print("Digite a placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();
 
-        Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
+        Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
         if (veiculo != null) {
             System.out.println("\nVeículo encontrado:");
             System.out.println("-------------------------");
@@ -171,7 +171,7 @@ public class VeiculoView {
         System.out.println("\n=== Atualização de Veículo ===");
         System.out.print("Placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();
-        Veiculo veiculoExistente = VeiculoController.buscarVeiculoPorPlaca(placa);
+        Veiculo veiculoExistente = veiculoController.buscarVeiculoPorPlaca(placa);
         if (veiculoExistente == null) {
             System.out.println("Veículo não encontrado!");
             return;
@@ -201,7 +201,7 @@ public class VeiculoView {
         System.out.println("\n=== Remoção de Veículo ===");
         System.out.print("Placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();
-        Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
+        Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
         if (veiculo == null) {
             System.out.println("Veículo não encontrado!");
             return;
