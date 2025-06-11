@@ -41,11 +41,7 @@ public class EstacionamentoController {
     }
 
     public String alocarMoto(Moto moto) throws Exception {
-<<<<<<< HEAD
         try{
-=======
-        try {
->>>>>>> a8c52a462de0430f482569ede459144051340ab6
             Vaga vaga = estacionamentos.getVagas().stream()
                     .filter(Vaga::estaDisponivelParaMoto)
                     .findFirst()
@@ -66,18 +62,14 @@ public class EstacionamentoController {
             return "Não há vagas disponíveis para alocar a moto.";
         } catch (Exception e) {
             throw new Exception("Erro ao alocar moto: " + e.getMessage(), e);
-<<<<<<< HEAD
-=======
         }
     }
 
-    public List<Vaga> listarVagas() throws Exception {
+    public List<String> listarVagas() throws Exception {
         try {
-            return estacionamentos.getVagas();
+            return estacionamentos.getVagas().stream().map(Vaga::toString).toList();
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao listar vagas: " + e.getMessage());
-            throw new Exception("Erro ao listar vagas.", e);
->>>>>>> a8c52a462de0430f482569ede459144051340ab6
+            throw new Exception("Erro ao listar vagas: " + e.getMessage(), e);
         }
     }
 }
