@@ -1,23 +1,26 @@
 package controllers;
 
-import model.Vaga;
-import model.VagaOcupada;
-import java.io.IOException;
+import factory.VagaOcupadaFactory;
 import java.util.ArrayList;
 import java.util.List;
-import factory.VagaOcupadaFactory;
+import model.Vaga;
+import model.VagaOcupada;
+import model.Veiculo;
+
 
 
 public class VagaOcupadaController {
 
-    private static List<VagaOcupada> vagasOcupadas;
+    private static List<VagaOcupada> vagasOcupadas = new ArrayList<>();
 
-    public static VagaOcupadaController() {
-        this.vagasOcupadas = new ArrayList<>();
-    }
 
-    public static String adicionarVagaOcupada(Vaga vaga, Veiculo veiculo) throws IOException {
-        return VagaOcupadaFactory.criarVagaOcupada(vaga, veiculo);
+    public static String adicionarVagaOcupada(Vaga vaga, Veiculo veiculo) throws Exception, IllegalStateException {
+        try {
+            vagasOcupadas.add(VagaOcupadaFactory.criarVagaOcupada(vaga, veiculo));
+            return "Vaga ocupada adicionada com sucesso!";
+        } catch (Exception e) {
+            throw new Exception("Erro ao adicionar vaga ocupada: " + e.getMessage(), e);
+        }
     }
 
     public static List<VagaOcupada> listarVagasOcupadas() {
