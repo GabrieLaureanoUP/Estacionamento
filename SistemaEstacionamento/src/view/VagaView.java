@@ -29,25 +29,18 @@ public class VagaView {
 
         do {
             System.out.println("\n--- Menu de Vagas ---");
-            //tirar o 1
-            System.out.println("1. Criar Vagas");
-            System.out.println("2. Listar Vagas");
-            System.out.println("3. Buscar Vaga por Número");
-            System.out.println("4. Remover Vaga");
+            System.out.println("1. Listar Vagas");
+            System.out.println("2. Buscar Vaga por Número");
             System.out.println("0. Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1 ->
-                    criarVagas();
-                case 2 ->
                     listarVagas();
-                case 3 ->
+                case 2 ->
                     buscarVagaPorNumero();
-                case 4 ->
-                    removerVaga();
                 case 0 -> {
                     try {
                         vagaController.salvar();
@@ -62,17 +55,6 @@ public class VagaView {
                     System.out.println("Opção inválida!");
             }
         } while (opcao != 0);
-    }
-
-    private void criarVagas() throws Exception {
-        System.out.print("Quantas vagas deseja criar? ");
-        int numeroDeVagas = scanner.nextInt();
-        scanner.nextLine(); // Limpar buffer
-
-        List<Vaga> vagas = vagaController.criarVagas(numeroDeVagas);
-        System.out.println("Vagas criadas com sucesso!");
-        System.out.println("Total de vagas: " + vagas.size());
-
     }
 
     private void listarVagas() throws Exception {
@@ -97,14 +79,5 @@ public class VagaView {
         } else {
             System.out.println("Vaga não encontrada!");
         }
-    }
-
-    private void removerVaga() throws Exception {
-        System.out.print("Digite o número da vaga para remover: ");
-        int numero = scanner.nextInt();
-        scanner.nextLine(); // Limpar buffer
-
-        vagaController.removerVaga(numero);
-        System.out.println("Vaga removida (se existia).");
     }
 }
