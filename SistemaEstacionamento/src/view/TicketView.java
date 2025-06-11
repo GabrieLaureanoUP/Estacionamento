@@ -35,6 +35,8 @@ public class TicketView {
             System.err.println("Erro ao carregar a lista " + e.getMessage());
         }
 
+        ticketController.(lista);
+
         do {
             System.out.println("\n--- Menu de Tickets ---");
             System.out.println("1. Gerar Ticket");
