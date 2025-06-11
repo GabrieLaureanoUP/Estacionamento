@@ -96,10 +96,18 @@ public class VeiculoController {
     }
 
     public void salvar() throws IOException {
-        VeiculoDAO.salvar(veiculos);
+        try{
+            VeiculoDAO.salvar(veiculos);
+        } catch (IOException e) {
+            throw new IOException("Erro ao salvar veículos: " + e.getMessage(), e);
+        }
     }
 
     public List<Veiculo> carregar() throws Exception {
-        return VeiculoDAO.carregar();
+        try{
+            return VeiculoDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar veículos: " + e.getMessage(), e);
+        }
     }
 }

@@ -40,7 +40,11 @@ public class VagaOcupadaController {
     }
 
     public void salvar() throws IOException, ClassNotFoundException {
-        VagaOcupadaDAO.salvar(vagasOcupadas);
+        try{
+            VagaOcupadaDAO.salvar(vagasOcupadas);
+        } catch (IOException  e) {
+            throw new IOException("Erro ao salvar vagas ocupadas.", e);
+        }
     }
 
     public List<VagaOcupada> carregar() throws Exception {

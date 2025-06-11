@@ -87,7 +87,11 @@ public class PagamentoController {
     }
 
     public void salvar() throws IOException, ClassNotFoundException {
-        PagamentoDAO.salvar(pagamentos);
+        try{
+            PagamentoDAO.salvar(pagamentos);
+        } catch (IOException e) {
+            throw new IOException("Erro ao salvar pagamentos: " + e.getMessage(), e);
+        }
     }
 
     public List<Pagamento> carregar() throws Exception {
