@@ -134,7 +134,7 @@ public class EstacionamentoView {
 
     public void listarVagas() {
         try {
-            List<Vaga> vagas = estacionamentoController.listarVagas();
+            List<Vaga> vagas = estacionamentoController.estacionamentos.getVagas();
             System.out.println("\n=== Lista de Vagas ===");
 
             if (vagas.isEmpty()) {

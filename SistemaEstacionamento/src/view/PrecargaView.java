@@ -62,7 +62,7 @@ public class PrecargaView {
                 Vaga vagaCarro2 = null;
                 Vaga vagaMoto1 = null;
 
-                for (Vaga vaga : estacionamentoController.listarVagas()) {
+                for (Vaga vaga : estacionamentoController.estacionamentos.getVagas()) {
                     if (vaga.getNumero() == carro1.getIdVaga()) {
                         vagaCarro1 = vaga;
                     }
