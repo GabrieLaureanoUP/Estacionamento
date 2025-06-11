@@ -4,6 +4,7 @@ import factory.PagamentoFactory;
 import model.Moto;
 import model.Pagamento;
 import model.Ticket;
+import model.Vaga;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.IllegalFormatException;
 import java.util.List;
 
 import dal.PagamentoDAO;
+import dal.VagaDAO;
 
 public class PagamentoController {
 
@@ -88,8 +90,11 @@ public class PagamentoController {
         PagamentoDAO.salvar(pagamentos);
     }
 
-    public List<Pagamento> carregar() throws IOException, ClassNotFoundException {
-        pagamentos = PagamentoDAO.carregar();
-        return pagamentos;
+    public List<Pagamento> carregar() throws Exception {
+        try {
+            return PagamentoDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar vagas.", e);
+        }
     }
 }

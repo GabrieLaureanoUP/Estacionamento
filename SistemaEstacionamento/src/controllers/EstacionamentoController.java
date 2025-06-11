@@ -50,7 +50,7 @@ public class EstacionamentoController {
     }
 
     public String alocarMoto(Moto moto) throws Exception {
-        try {
+        try{
             Vaga vaga = estacionamentos.getVagas().stream()
                     .filter(Vaga::estaDisponivelParaMoto)
                     .findFirst()
@@ -74,9 +74,9 @@ public class EstacionamentoController {
         }
     }
 
-    public List<Vaga> listarVagas() throws Exception {
+    public List<String> listarVagas() throws Exception {
         try {
-            return estacionamentos.getVagas();
+            return estacionamentos.getVagas().stream().map(Vaga::toString).toList();
         } catch (Exception e) {
             throw new Exception("Erro ao listar vagas.", e);
         }

@@ -102,4 +102,12 @@ public class VeiculoController {
     public List<Veiculo> carregar() throws Exception {
         return VeiculoDAO.carregar();
     }
+
+    public List<Veiculo> carregar() throws Exception {
+        try {
+            return VeiculoDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar veiculos.", e);
+        }
+    }
 }

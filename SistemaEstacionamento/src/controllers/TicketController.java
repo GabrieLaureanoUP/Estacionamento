@@ -113,7 +113,7 @@ public class TicketController {
         try {
             return TicketDAO.carregar();
         } catch (Exception e) {
-            throw new Exception("Erro ao carregar tickets: " + e.getMessage(), e);
+            throw new Exception("Erro ao carregar tickets.", e);
         }
     }
 }

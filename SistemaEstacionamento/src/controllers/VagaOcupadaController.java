@@ -44,6 +44,14 @@ public class VagaOcupadaController {
     }
 
     public List<VagaOcupada> carregar() throws Exception {
+<<<<<<< HEAD
         return VagaOcupadaDAO.carregar();
+=======
+        try {
+            return VagaOcupadaDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar vagas ocupadas.", e);
+        }
+>>>>>>> 66c91bec8c16623c21b1783d786970d539a2f2ec
     }
 }
