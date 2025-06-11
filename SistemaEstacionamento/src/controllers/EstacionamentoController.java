@@ -55,7 +55,11 @@ public class EstacionamentoController {
         if (vaga != null) {
             VagaOcupadaController.adicionarVagaOcupada(vaga, moto);
             return "Moto alocada com sucesso!";
+<<<<<<< HEAD
+        } else {
+=======
         } else {;
+>>>>>>> ea696929de39434c2a1f1e54a955177aceffa541
             throw new Exception("Sem vagas disponíveis.");
         }
     }
