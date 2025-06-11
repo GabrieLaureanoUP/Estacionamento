@@ -33,7 +33,6 @@ public class TicketController {
             tickets.add(ticket);
             return ticket;
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao gerar ticket: " + e.getMessage());
             throw new Exception("Erro ao gerar ticket: " + e.getMessage(), e);
         }
     }
@@ -42,7 +41,6 @@ public class TicketController {
         try {
             return tickets;
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao listar tickets: " + e.getMessage());
             throw new Exception("Erro ao listar tickets: " + e.getMessage(), e);
         }
     }
@@ -51,7 +49,6 @@ public class TicketController {
         try {
             return tickets;
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao obter tickets: " + e.getMessage());
             throw new Exception("Erro ao obter tickets: " + e.getMessage(), e);
         }
     }
@@ -65,7 +62,6 @@ public class TicketController {
             }
             return null;
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao buscar ticket por ID: " + e.getMessage());
             throw new Exception("Erro ao buscar ticket por ID: " + e.getMessage());
         }
     }
@@ -83,7 +79,6 @@ public class TicketController {
             }
             return false;
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao atualizar ticket: " + e.getMessage());
             throw new Exception("Erro ao atualizar ticket: " + e.getMessage(), e);
         }
     }
@@ -92,7 +87,6 @@ public class TicketController {
         try {
             return tickets.removeIf(ticket -> ticket.getId() == id);
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao remover ticket: " + e.getMessage());
             throw new Exception("Erro ao remover ticket: " + e.getMessage(), e);
         }
     }
@@ -101,7 +95,6 @@ public class TicketController {
         try {
             TicketDAO.salvar(tickets);
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao salvar tickets: " + e.getMessage());
             throw new IOException("Erro ao salvar tickets no arquivo: " + e.getMessage(), e);
         }
     }

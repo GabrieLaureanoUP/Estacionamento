@@ -38,7 +38,6 @@ public class PagamentoController {
             }
             return "pagamento nao criado!";
         } catch (IllegalFormatException e) {
-            System.err.println("[Controller] Erro inesperado argumentos errados de pagamento: " + e.getMessage());
             throw new Exception("Argumentos errados de pagamento" + e.getMessage());
         }
 
@@ -52,7 +51,6 @@ public class PagamentoController {
             }
             return "pagamento não encontrado";
         } catch (Exception e) {
-            System.err.println("[Controller] Erro inesperado ao editar pagamento: " + e.getMessage());
             throw new Exception("pagamento não encontrado" + e.getMessage());
         }
     }
@@ -61,7 +59,6 @@ public class PagamentoController {
         try {
             return pagamentos.stream().map(Pagamento::toString).toList();
         } catch (Exception e) {
-            System.err.println("[Controller] Erro inesperado ao listar pagamentos: " + e.getMessage());
             throw new Exception("Nenhum pagamento encontrado" + e.getMessage());
         }
     }
@@ -76,7 +73,6 @@ public class PagamentoController {
             pagamentos.remove(pg);
             return "pagamento excluido com sucesso!";
         } catch (Exception e) {
-            System.err.println("[Controller] Erro inesperado ao remover pagamento: " + e.getMessage());
             throw new Exception("Nenhum pagamento encontrado" + e.getMessage());
         }
     }

@@ -12,7 +12,7 @@ import model.Estacionamento;
 
 public class EstacionamentoDAO {
 
-    private static final String CAMINHO = "SistemaEstacionamento/src/dados";
+    private static final String CAMINHO = "src/dados";
 
     public static void salvar(List<Estacionamento> estacionamentos) throws IOException {
         File diretorio = new File(CAMINHO);
