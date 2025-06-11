@@ -1,6 +1,7 @@
 package controllers;
 
 import factory.EstacionamentoFactory;
+import java.util.List;
 import model.Carro;
 import model.Estacionamento;
 import model.Moto;
@@ -26,7 +27,7 @@ public class EstacionamentoController {
     public String alocarCarro(Carro carro) throws Exception {
         Vaga vaga = estacionamentos.getVagas().stream()
                 .filter(Vaga::estaDisponivel).findFirst().orElse(null);
-        try{
+        try {
             if (vaga != null) {
                 vaga.alterarDisponibilidade(false);
                 carro.setIdVaga(vaga.getNumero());
@@ -40,8 +41,7 @@ public class EstacionamentoController {
     }
 
     public String alocarMoto(Moto moto) throws Exception {
-<<<<<<< HEAD
-        try{
+        try {
             Vaga vaga = estacionamentos.getVagas().stream()
                     .filter(Vaga::estaDisponivelParaMoto)
                     .findFirst()
@@ -60,28 +60,17 @@ public class EstacionamentoController {
                 return "Moto alocada com sucesso!";
             }
             return "Não há vagas disponíveis para alocar a moto.";
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("Erro ao alocar moto: " + e.getMessage(), e);
-=======
-        Vaga vaga = estacionamentos.getVagas().stream()
-                .filter(Vaga::estaDisponivelParaMoto)
-                .findFirst()
-                .orElse(null);
-        if (vaga != null) {
-            vaga.alterarDisponibilidadeMoto(false);
         }
-        if (vaga == null) {
-            vaga = estacionamentos.getVagas().stream()
-                    .filter(Vaga::estaDisponivel).findFirst().orElse(null);
-            vaga.alterarDisponibilidadeMoto(true);
-            vaga.alterarDisponibilidade(false);
-        }
-        if (vaga != null) {
-            VagaOcupadaController.adicionarVagaOcupada(vaga, moto);
-            return "Moto alocada com sucesso!";
-        } else {
-            throw new Exception("Sem vagas disponíveis.");
->>>>>>> 72949fd7ee9ba7277c6aa48afa5ec54b70841736
+    }
+
+    public List<Vaga> listarVagas() throws Exception {
+        try {
+            return estacionamentos.getVagas();
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao listar vagas: " + e.getMessage());
+            throw new Exception("Erro ao listar vagas.", e);
         }
     }
 }

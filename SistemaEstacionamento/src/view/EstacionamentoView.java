@@ -1,6 +1,7 @@
 package view;
 
 import controllers.EstacionamentoController;
+import controllers.VagaOcupadaController;
 import controllers.VeiculoController;
 import dal.EstacionamentoDAO;
 import java.util.ArrayList;
@@ -9,17 +10,17 @@ import java.util.Scanner;
 import model.Carro;
 import model.Estacionamento;
 import model.Moto;
+import model.Vaga;
+import model.VagaOcupada;
 import model.Veiculo;
 
 public class EstacionamentoView {
 
-    private EstacionamentoController estacionamentoController;
-    private VeiculoController veiculoController;
-    private Scanner scanner;
+    private final EstacionamentoController estacionamentoController;
+    private final Scanner scanner;
 
-    public EstacionamentoView(EstacionamentoController estacionamentoController, VeiculoController veiculoController) {
+    public EstacionamentoView(EstacionamentoController estacionamentoController) {
         this.estacionamentoController = estacionamentoController;
-        this.veiculoController = veiculoController;
         this.scanner = new Scanner(System.in);
     }
 
@@ -38,6 +39,8 @@ public class EstacionamentoView {
             System.out.println("1. Cadastrar Estacionamento");
             System.out.println("2. Alocar Carro");
             System.out.println("3. Alocar Moto");
+            System.out.println("4. Listar vagas");
+            System.out.println("5. Listar vagas ocupadas");
             System.out.println("0. Voltar");
 
             System.out.print("Escolha uma opção: ");
@@ -50,6 +53,10 @@ public class EstacionamentoView {
                     alocarCarro();
                 case 3 ->
                     alocarMoto();
+                case 4 ->
+                    listarVagas();
+                case 5 ->
+                    listarVagasOcupadas();
                 case 0 -> {
                     System.out.println("Voltando ao menu principal...");
                     try {
@@ -90,25 +97,13 @@ public class EstacionamentoView {
 
             System.out.print("Placa do carro: ");
             String placa = scanner.nextLine();
-
             Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
             if (veiculo == null || !(veiculo instanceof Carro)) {
-                System.out.println("Carro não encontrado. Deseja cadastrar um novo? (S/N)");
-                String opcao = scanner.nextLine();
-                if (opcao.equalsIgnoreCase("S")) {
-                    System.out.print("Modelo: ");
-                    String modelo = scanner.nextLine();
-                    System.out.print("Cor: ");
-                    String cor = scanner.nextLine();
-                    veiculoController.criarCarro(placa, modelo, cor, java.time.LocalDateTime.now());
-                    veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
-                } else {
-                    return;
-                }
+                System.out.println("Carro não encontrado! Certifique-se de cadastrar o veículo primeiro.");
+                return;
             }
 
             String resultado = estacionamentoController.alocarCarro((Carro) veiculo);
-
             System.out.println(resultado);
         } catch (Exception e) {
             System.out.println("Erro ao alocar carro: " + e.getMessage());
@@ -124,27 +119,61 @@ public class EstacionamentoView {
 
             System.out.print("Placa da moto: ");
             String placa = scanner.nextLine();
-
             Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
             if (veiculo == null || !(veiculo instanceof Moto)) {
-                System.out.println("Moto não encontrada. Deseja cadastrar uma nova? (S/N)");
-                String opcao = scanner.nextLine();
-                if (opcao.equalsIgnoreCase("S")) {
-                    System.out.print("Modelo: ");
-                    String modelo = scanner.nextLine();
-                    System.out.print("Cor: ");
-                    String cor = scanner.nextLine();
-                    veiculoController.criarMoto(placa, modelo, cor, java.time.LocalDateTime.now());
-                    veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
-                } else {
-                    return;
-                }
+                System.out.println("Moto não encontrada! Certifique-se de cadastrar o veículo primeiro.");
+                return;
             }
 
             String resultado = estacionamentoController.alocarMoto((Moto) veiculo);
             System.out.println(resultado);
         } catch (Exception e) {
             System.out.println("Erro ao alocar moto: " + e.getMessage());
+        }
+    }
+
+    public void listarVagas() {
+        try {
+            List<Vaga> vagas = estacionamentoController.listarVagas();
+            System.out.println("\n=== Lista de Vagas ===");
+
+            if (vagas.isEmpty()) {
+                System.out.println("Não há vagas cadastradas.");
+                return;
+            }
+
+            for (Vaga vaga : vagas) {
+                System.out.println("-------------------------");
+                System.out.println("Vaga número: " + vaga.getNumero());
+                System.out.println("Status: " + vaga.getStatus());
+                System.out.println("Disponível para moto: " + (vaga.estaDisponivelParaMoto() ? "Sim" : "Não"));
+                System.out.println("Disponível para carro: " + (vaga.estaDisponivel() ? "Sim" : "Não"));
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao listar vagas: " + e.getMessage());
+        }
+    }
+
+    public void listarVagasOcupadas() {
+        try {
+            List<VagaOcupada> vagasOcupadas = VagaOcupadaController.listarVagasOcupadas();
+            System.out.println("\n=== Lista de Vagas Ocupadas ===");
+
+            if (vagasOcupadas.isEmpty()) {
+                System.out.println("Não há vagas ocupadas no momento.");
+                return;
+            }
+
+            for (VagaOcupada vagaOcupada : vagasOcupadas) {
+                System.out.println("-------------------------");
+                System.out.println("Vaga número: " + vagaOcupada.getVaga().getNumero());
+                System.out.println("Status da vaga: " + vagaOcupada.getVaga().getStatus());
+                System.out.println("Veículo: " + vagaOcupada.getVeiculo().getPlaca() + " - "
+                        + vagaOcupada.getVeiculo().getModelo() + " ("
+                        + vagaOcupada.getVeiculo().getCor() + ")");
+            }
+        } catch (Exception e) {
+            System.err.println("Erro ao listar vagas ocupadas: " + e.getMessage());
         }
     }
 }

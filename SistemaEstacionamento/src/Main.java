@@ -10,7 +10,6 @@ import util.Log;
 import view.EstacionamentoView;
 import view.PagamentoView;
 import view.TicketView;
-import view.VagaView;
 import view.VeiculoView;
 
 public class Main {
@@ -29,10 +28,8 @@ public class Main {
 
             vagaController.setVagas(estacionamentoController.estacionamentos != null
                     ? estacionamentoController.estacionamentos.getVagas() : null);
-
             VeiculoView veiculoView = new VeiculoView(veiculoController);
-            VagaView vagaView = new VagaView(vagaController);
-            EstacionamentoView estacionamentoView = new EstacionamentoView(estacionamentoController, veiculoController);
+            EstacionamentoView estacionamentoView = new EstacionamentoView(estacionamentoController);
             TicketView ticketView = new TicketView(ticketController, veiculoController, vagaController);
             PagamentoView pagamentoView = new PagamentoView(pagamentoController, ticketController);
 
@@ -41,9 +38,8 @@ public class Main {
                 System.out.println("\n=== SISTEMA DE ESTACIONAMENTO ===");
                 System.out.println("1. Gerenciar Estacionamento");
                 System.out.println("2. Gerenciar Veículos");
-                System.out.println("3. Gerenciar Vagas");
-                System.out.println("4. Gerenciar Tickets");
-                System.out.println("5. Gerenciar Pagamentos");
+                System.out.println("3. Gerenciar Tickets");
+                System.out.println("4. Gerenciar Pagamentos");
                 System.out.println("0. Sair");
                 System.out.print("Escolha uma opção: ");
 
@@ -71,12 +67,9 @@ public class Main {
                         veiculoView.menuVeiculo();
                         break;
                     case 3:
-                        vagaView.menuVaga();
-                        break;
-                    case 4:
                         ticketView.menuTicket();
                         break;
-                    case 5:
+                    case 4:
                         pagamentoView.menuPagamento();
                         break;
                     case 0:
