@@ -9,6 +9,11 @@ public class VagaOcupadaFactory {
         if (vaga == null || veiculo == null) {
             throw new IllegalArgumentException("Vaga e Veículo não podem ser nulos.");
         }
-        return new VagaOcupada(vaga, veiculo);
+
+        try {
+           return new VagaOcupada(vaga, veiculo); 
+        } catch (Exception e) {
+            throw new Exception("Erro ao criar vaga ocupada: " + e.getMessage(), e);
+        }
     }
 }

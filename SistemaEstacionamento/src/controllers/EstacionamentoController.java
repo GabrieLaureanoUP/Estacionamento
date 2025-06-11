@@ -25,37 +25,41 @@ public class EstacionamentoController {
     public String alocarCarro(Carro carro) throws Exception {
         Vaga vaga = estacionamentos.getVagas().stream()
                 .filter(Vaga::estaDisponivel).findFirst().orElse(null);
-
-        if (vaga != null) {
-            vaga.alterarDisponibilidade(false);
-            carro.setIdVaga(vaga.getNumero());
-            VagaOcupadaController.adicionarVagaOcupada(vaga, carro);
-            return "Carro alocado com sucesso!";
-
-        } else {
-            throw new Exception("Sem vagas disponiveis");
+        try{
+            if (vaga != null) {
+                vaga.alterarDisponibilidade(false);
+                carro.setIdVaga(vaga.getNumero());
+                VagaOcupadaController.adicionarVagaOcupada(vaga, carro);
+                return "Carro alocado com sucesso!";
+            }
+            return "Não há vagas disponíveis para alocar o carro.";
+        } catch (Exception e) {
+            throw new Exception("Erro ao alocar carro: " + e.getMessage(), e);
         }
     }
 
     public String alocarMoto(Moto moto) throws Exception {
-        Vaga vaga = estacionamentos.getVagas().stream()
-                .filter(Vaga::estaDisponivelParaMoto)
-                .findFirst()
-                .orElse(null);
-        if (vaga != null) {
-            vaga.alterarDisponibilidadeMoto(false);
-        }
-        if (vaga == null) {
-            vaga = estacionamentos.getVagas().stream()
-                    .filter(Vaga::estaDisponivel).findFirst().orElse(null);
-            vaga.alterarDisponibilidadeMoto(true);
-            vaga.alterarDisponibilidade(false);
-        }
-        if (vaga != null) {
-            VagaOcupadaController.adicionarVagaOcupada(vaga, moto);
-            return "Moto alocada com sucesso!";
-        } else {
-            throw new Exception("Sem vagas disponíveis.");
+        try{
+            Vaga vaga = estacionamentos.getVagas().stream()
+                    .filter(Vaga::estaDisponivelParaMoto)
+                    .findFirst()
+                    .orElse(null);
+            if (vaga != null) {
+                vaga.alterarDisponibilidadeMoto(false);
+            }
+            if (vaga == null) {
+                vaga = estacionamentos.getVagas().stream()
+                        .filter(Vaga::estaDisponivel).findFirst().orElse(null);
+                vaga.alterarDisponibilidadeMoto(true);
+                vaga.alterarDisponibilidade(false);
+            }
+            if (vaga != null) {
+                VagaOcupadaController.adicionarVagaOcupada(vaga, moto);
+                return "Moto alocada com sucesso!";
+            }
+            return "Não há vagas disponíveis para alocar a moto.";
+        }catch (Exception e) {
+            throw new Exception("Erro ao alocar moto: " + e.getMessage(), e);
         }
     }
 }

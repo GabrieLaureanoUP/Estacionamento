@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class VagaOcupada {
+public class VagaOcupada implements Serializable {
     private Vaga vaga;
     private Veiculo veiculo;
 
