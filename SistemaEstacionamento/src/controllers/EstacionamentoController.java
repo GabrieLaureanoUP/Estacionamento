@@ -18,7 +18,6 @@ public class EstacionamentoController {
         try {
             estacionamentos = EstacionamentoFactory.criarEstacionamento(nome, numeroDeVagas, endereco, telefone, email);
         } catch (Exception e) {
-            System.err.println("[Controller] Erro inesperado ao cadastrar estacionamento: " + e.getMessage());
             throw new Exception("Erro ao cadastrar estacionamento: " + e.getMessage(), e);
         }
 
@@ -34,7 +33,6 @@ public class EstacionamentoController {
             return "Carro alocado com sucesso!";
 
         } else {
-            System.err.println("[Controller] Erro inesperado sem vagas: ");
             throw new Exception("Sem vagas disponiveis");
         }
     }
@@ -56,7 +54,6 @@ public class EstacionamentoController {
         if (vaga != null) {
             return "Moto alocada com sucesso!";
         } else {
-            System.err.println("[Controller] Erro inesperado sem vagas disponiveis: ");
             throw new Exception("Sem vagas disponíveis.");
         }
     }
