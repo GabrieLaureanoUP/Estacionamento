@@ -66,9 +66,9 @@ public class PagamentoView {
         } catch (InputMismatchException e) {
             System.out.println("Entrada inválida! Por favor, digite um número para a opção.");
             System.err.println("[PagamentoView] Erro de entrada de usuário em lerOpcao: " + e.getMessage());
-            opcao = -1; // Retorna um valor inválido para manter o loop
+            opcao = -1;
         } finally {
-            scanner.nextLine(); // Limpar buffer sempre, seja sucesso ou falha
+            scanner.nextLine();
         }
         return opcao;
     }
@@ -93,7 +93,7 @@ public class PagamentoView {
                 }
             }
             default ->
-                System.out.println("❌ Opção inválida! Escolha um número entre 0 e 4.");
+                System.out.println("Opção inválida! Escolha um número entre 0 e 4.");
         }
     }
 
@@ -101,38 +101,36 @@ public class PagamentoView {
         try {
             System.out.println("\n=== Realizar Pagamento ===");
             System.out.print("ID do Ticket: ");
-            int ticketId = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
+            int ticketId = scanner.nextInt();// Limpar buffer
 
             Ticket ticket = ticketController.getTicketById(ticketId);
             if (ticket == null) {
-                System.out.println("❌ Ticket não encontrado!");
+                System.out.println("Ticket não encontrado!");
                 return;
             }
 
             System.out.println("Ticket encontrado: " + ticket.toString());
             System.out.print("Valor a pagar: ");
             double valor = scanner.nextDouble();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
 
             System.out.print("Forma de pagamento (DINHEIRO, CARTAO_CREDITO, CARTAO_DEBITO, PIX): ");
             String formaPagamento = scanner.nextLine().toUpperCase();
 
             String resultado = pagamentoController.pagar(ticket, valor, formaPagamento);
             System.out.println(resultado);
-
             try {
                 pagamentoController.salvar();
-                System.out.println("✓ Pagamento salvo com sucesso!");
+                System.out.println("Pagamento salvo com sucesso!");
             } catch (Exception e) {
                 System.err.println("Erro ao salvar pagamento: " + e.getMessage());
             }
         } catch (InputMismatchException e) {
-            System.out.println("❌ Entrada inválida! Verifique o formato dos dados inseridos.");
+            System.out.println("Entrada inválida! Verifique o formato dos dados inseridos.");
         } catch (IllegalArgumentException e) {
-            System.out.println("❌ Argumento inválido: " + e.getMessage());
+            System.out.println("Argumento inválido: " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("❌ Erro ao realizar pagamento: " + e.getMessage());
+            System.out.println("Erro ao realizar pagamento: " + e.getMessage());
         }
     }
 
@@ -175,7 +173,7 @@ public class PagamentoView {
         }
 
         if (!encontrado) {
-            System.out.println("❌ Pagamento com ID " + id + " não encontrado!");
+            System.out.println("Pagamento com ID " + id + " não encontrado!");
             return;
         }
 
@@ -184,7 +182,7 @@ public class PagamentoView {
 
         try {
             pagamentoController.salvar();
-            System.out.println("✓ Alterações salvas com sucesso!");
+            System.out.println("Alterações salvas com sucesso!");
         } catch (Exception e) {
             System.err.println("Erro ao salvar edição: " + e.getMessage());
         }
@@ -204,7 +202,7 @@ public class PagamentoView {
 
         System.out.print("ID do pagamento para remover: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine();
 
         boolean encontrado = false;
         for (Pagamento pg : pagamentoController.getPagamentos()) {
@@ -215,7 +213,7 @@ public class PagamentoView {
         }
 
         if (!encontrado) {
-            System.out.println("❌ Pagamento com ID " + id + " não encontrado!");
+            System.out.println("Pagamento com ID " + id + " não encontrado!");
             return;
         }
 
@@ -224,7 +222,7 @@ public class PagamentoView {
 
         try {
             pagamentoController.salvar();
-            System.out.println("✓ Lista de pagamentos atualizada e salva com sucesso!");
+            System.out.println("Lista de pagamentos atualizada e salva com sucesso!");
         } catch (Exception e) {
             System.err.println("Erro ao salvar após remoção: " + e.getMessage());
         }

@@ -1,6 +1,7 @@
 package controllers;
 
 import factory.EstacionamentoFactory;
+import java.util.List;
 import model.Carro;
 import model.Estacionamento;
 import model.Moto;
@@ -26,7 +27,7 @@ public class EstacionamentoController {
     public String alocarCarro(Carro carro) throws Exception {
         Vaga vaga = estacionamentos.getVagas().stream()
                 .filter(Vaga::estaDisponivel).findFirst().orElse(null);
-        try{
+        try {
             if (vaga != null) {
                 vaga.alterarDisponibilidade(false);
                 carro.setIdVaga(vaga.getNumero());
@@ -40,7 +41,11 @@ public class EstacionamentoController {
     }
 
     public String alocarMoto(Moto moto) throws Exception {
+<<<<<<< HEAD
         try{
+=======
+        try {
+>>>>>>> a8c52a462de0430f482569ede459144051340ab6
             Vaga vaga = estacionamentos.getVagas().stream()
                     .filter(Vaga::estaDisponivelParaMoto)
                     .findFirst()
@@ -59,8 +64,20 @@ public class EstacionamentoController {
                 return "Moto alocada com sucesso!";
             }
             return "Não há vagas disponíveis para alocar a moto.";
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("Erro ao alocar moto: " + e.getMessage(), e);
+<<<<<<< HEAD
+=======
+        }
+    }
+
+    public List<Vaga> listarVagas() throws Exception {
+        try {
+            return estacionamentos.getVagas();
+        } catch (Exception e) {
+            System.err.println("[Controller] Erro ao listar vagas: " + e.getMessage());
+            throw new Exception("Erro ao listar vagas.", e);
+>>>>>>> a8c52a462de0430f482569ede459144051340ab6
         }
     }
 }

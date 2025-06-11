@@ -121,9 +121,8 @@ public class VeiculoView {
         String modelo = scanner.nextLine();
         System.out.print("Cor: ");
         String cor = scanner.nextLine();
-
         veiculoController.criarCarro(placa, modelo, cor, LocalDateTime.now());
-        System.out.println("✓ Carro cadastrado com sucesso!");
+        System.out.println("Carro cadastrado com sucesso!");
     }
 
     private void cadastrarMoto() {
@@ -141,9 +140,8 @@ public class VeiculoView {
             String modelo = scanner.nextLine();
             System.out.print("Cor: ");
             String cor = scanner.nextLine();
-
             veiculoController.criarMoto(placa, modelo, cor, LocalDateTime.now());
-            System.out.println("✓ Moto cadastrada com sucesso!");
+            System.out.println("Moto cadastrada com sucesso!");
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar moto: " + e.getMessage());
         }
@@ -166,7 +164,7 @@ public class VeiculoView {
                 System.out.println("Vaga atual: " + veiculo.getIdVaga());
             }
         } else {
-            System.out.println("❌ Veículo não encontrado!");
+            System.out.println("Veículo não encontrado!");
         }
     }
 
@@ -174,10 +172,9 @@ public class VeiculoView {
         System.out.println("\n=== Atualização de Veículo ===");
         System.out.print("Placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();
-
         Veiculo veiculoExistente = VeiculoController.buscarVeiculoPorPlaca(placa);
         if (veiculoExistente == null) {
-            System.out.println("❌ Veículo não encontrado!");
+            System.out.println("Veículo não encontrado!");
             return;
         }
 
@@ -196,9 +193,8 @@ public class VeiculoView {
         if (cor.isEmpty()) {
             cor = veiculoExistente.getCor();
         }
-
         Veiculo veiculoAtualizado = veiculoController.atualizarVeiculo(placa, modelo, cor);
-        System.out.println("✓ Veículo atualizado com sucesso!");
+        System.out.println("Veículo atualizado com sucesso!");
         System.out.println(veiculoAtualizado);
     }
 
@@ -206,19 +202,17 @@ public class VeiculoView {
         System.out.println("\n=== Remoção de Veículo ===");
         System.out.print("Placa do veículo: ");
         String placa = scanner.nextLine().toUpperCase();
-
         Veiculo veiculo = VeiculoController.buscarVeiculoPorPlaca(placa);
         if (veiculo == null) {
-            System.out.println("❌ Veículo não encontrado!");
+            System.out.println("Veículo não encontrado!");
             return;
         }
 
         if (veiculo.getIdVaga() != 0) {
-            System.out.println("❌ Não é possível remover um veículo que está estacionado!");
+            System.out.println("Não é possível remover um veículo que está estacionado!");
             return;
         }
-
         veiculoController.removerVeiculo(placa);
-        System.out.println("✓ Veículo removido com sucesso!");
+        System.out.println("Veículo removido com sucesso!");
     }
 }
