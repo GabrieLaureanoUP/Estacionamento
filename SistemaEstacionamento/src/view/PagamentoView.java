@@ -26,7 +26,7 @@ public class PagamentoView {
         int opcao;
         List<Pagamento> lista = new ArrayList<>();
         try {
-            lista = PagamentoDAO.carregar();
+            lista = pagamentoController.carregar();
         } catch (Exception e) {
             System.err.println("Erro ao carregar a lista de pagamentos: " + e.getMessage());
         }
@@ -44,7 +44,7 @@ public class PagamentoView {
                 executarOpcao(opcao);
             } catch (Exception e) {
                 System.out.println("Erro: " + e.getMessage());
-                System.err.println("[PagamentoView] Erro ao executar opção " + opcao + ": " + e.getMessage());
+                System.err.println("Erro ao executar opção " + opcao + ": " + e.getMessage());
             }
         } while (opcao != 0);
     }
@@ -65,7 +65,7 @@ public class PagamentoView {
             opcao = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Entrada inválida! Por favor, digite um número para a opção.");
-            System.err.println("[PagamentoView] Erro de entrada de usuário em lerOpcao: " + e.getMessage());
+            System.err.println("Erro de entrada de usuário em lerOpcao: " + e.getMessage());
             opcao = -1;
         } finally {
             scanner.nextLine();

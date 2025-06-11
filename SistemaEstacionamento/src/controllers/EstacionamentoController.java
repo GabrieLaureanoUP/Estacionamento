@@ -69,7 +69,7 @@ public class EstacionamentoController {
         try {
             return estacionamentos.getVagas().stream().map(Vaga::toString).toList();
         } catch (Exception e) {
-            throw new Exception("Erro ao listar vagas: " + e.getMessage(), e);
+            throw new Exception("Erro ao listar vagas.", e);
         }
     }
 }

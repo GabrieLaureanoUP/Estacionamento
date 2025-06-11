@@ -1,7 +1,6 @@
 package view;
 
 import controllers.VeiculoController;
-import dal.VeiculoDAO;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class VeiculoView {
         int opcao;
         List<Veiculo> lista = new ArrayList<>();
         try {
-            lista = VeiculoDAO.carregar();
+            lista = veiculoController.carregar();
         } catch (Exception e) {
             System.err.println("Erro ao carregar a lista " + e.getMessage());
         }

@@ -3,7 +3,6 @@ package view;
 import controllers.TicketController;
 import controllers.VagaController;
 import controllers.VeiculoController;
-import dal.TicketDAO;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class TicketView {
         int opcao;
         List<Ticket> lista = new ArrayList<>();
         try {
-            lista = TicketDAO.carregar();
+            lista = ticketController.carregar();
         } catch (Exception e) {
             System.err.println("Erro ao carregar a lista " + e.getMessage());
         }

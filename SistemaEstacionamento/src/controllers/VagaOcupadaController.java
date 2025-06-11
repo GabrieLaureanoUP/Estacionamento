@@ -9,12 +9,9 @@ import model.Vaga;
 import model.VagaOcupada;
 import model.Veiculo;
 
-
-
 public class VagaOcupadaController {
 
     private static List<VagaOcupada> vagasOcupadas = new ArrayList<>();
-
 
     public static String adicionarVagaOcupada(Vaga vaga, Veiculo veiculo) throws Exception, IllegalStateException {
         try {
@@ -39,7 +36,13 @@ public class VagaOcupadaController {
     }
 
     public void salvar() throws IOException, ClassNotFoundException {
-        VagaOcupadaDAO.salvar(vagasOcupadas);
+        try {
+            VagaOcupadaDAO.salvar(vagasOcupadas);
+        } catch (IOException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IOException("Erro inesperado ao salvar dados.", e);
+        }
     }
 
     public List<VagaOcupada> carregar() throws Exception {
