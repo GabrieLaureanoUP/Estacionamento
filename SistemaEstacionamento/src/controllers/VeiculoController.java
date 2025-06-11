@@ -110,4 +110,12 @@ public class VeiculoController {
             throw new IOException("Erro inesperado ao salvar dados.", e); // Envolve em IOException para consistência
         }
     }
+
+    public List<Veiculo> carregar() throws Exception {
+        try {
+            return VeiculoDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar veiculos.", e);
+        }
+    }
 }

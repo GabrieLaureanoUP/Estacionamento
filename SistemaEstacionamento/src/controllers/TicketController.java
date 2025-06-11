@@ -106,4 +106,12 @@ public class TicketController {
             throw new IOException("Erro ao salvar tickets no arquivo: " + e.getMessage(), e);
         }
     }
+
+    public List<Ticket> carregar() throws Exception {
+        try {
+            return TicketDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar tickets.", e);
+        }
+    }
 }

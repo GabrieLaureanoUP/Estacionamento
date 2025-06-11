@@ -1,6 +1,8 @@
 package controllers;
 
+import dal.VagaOcupadaDAO;
 import factory.VagaOcupadaFactory;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Vaga;
@@ -34,5 +36,17 @@ public class VagaOcupadaController {
             }
         }
         return null;
+    }
+
+    public void salvar() throws IOException, ClassNotFoundException {
+        VagaOcupadaDAO.salvar(vagasOcupadas);
+    }
+
+    public List<VagaOcupada> carregar() throws Exception {
+        try {
+            return VagaOcupadaDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar vagas ocupadas.", e);
+        }
     }
 }
