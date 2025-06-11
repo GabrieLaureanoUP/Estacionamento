@@ -69,7 +69,6 @@ public class EstacionamentoController {
         try {
             return estacionamentos.getVagas();
         } catch (Exception e) {
-            System.err.println("[Controller] Erro ao listar vagas: " + e.getMessage());
             throw new Exception("Erro ao listar vagas.", e);
         }
     }

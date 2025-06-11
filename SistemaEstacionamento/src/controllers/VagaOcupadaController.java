@@ -1,18 +1,17 @@
 package controllers;
 
+import dal.VagaOcupadaDAO;
 import factory.VagaOcupadaFactory;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Vaga;
 import model.VagaOcupada;
 import model.Veiculo;
 
-
-
 public class VagaOcupadaController {
 
     private static List<VagaOcupada> vagasOcupadas = new ArrayList<>();
-
 
     public static String adicionarVagaOcupada(Vaga vaga, Veiculo veiculo) throws Exception, IllegalStateException {
         try {
@@ -34,5 +33,23 @@ public class VagaOcupadaController {
             }
         }
         return null;
+    }
+
+    public void salvar() throws IOException, ClassNotFoundException {
+        try {
+            VagaOcupadaDAO.salvar(vagasOcupadas);
+        } catch (IOException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new IOException("Erro inesperado ao salvar dados.", e);
+        }
+    }
+
+    public List<VagaOcupada> carregar() throws Exception {
+        try {
+            return VagaOcupadaDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar vagas.", e);
+        }
     }
 }

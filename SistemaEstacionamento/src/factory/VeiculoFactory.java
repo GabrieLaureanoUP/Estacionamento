@@ -12,7 +12,7 @@ public abstract class VeiculoFactory {
         String placaTraco;
         int placaNumero;
 
-        try{
+        try {
             placaSub = placa.substring(0, 2);
             placaTraco = placa.substring(4);
             placaNumero = Integer.parseInt(placa.substring(4, 8));
@@ -38,24 +38,24 @@ public abstract class VeiculoFactory {
         }
     }
 
-    public static Moto criarMoto(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada)throws IllegalAccessException, Exception {
+    public static Moto criarMoto(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
         String placaSub;
         String placaTraco;
         int placaNumero;
 
-        try{
-            placaSub = placa.substring(0, 2);
-            placaTraco = placa.substring(4);
+        try {
+            placaSub = placa.substring(0, 3);
+            placaTraco = placa.substring(3, 4);
             placaNumero = Integer.parseInt(placa.substring(4, 8));
         } catch (Exception e) {
             throw new IllegalArgumentException("Placa deve conter apenas letras e números válidos.");
         }
 
-        if(placaSub.isEmpty()) {
+        if (placaSub.isEmpty()) {
             throw new IllegalArgumentException("Placa deve seguir o formato AAA-0000.");
         }
 
-        if(placaTraco.isEmpty() || placaTraco != "-") {
+        if (placaTraco.isEmpty() || !placaTraco.equals("-")) {
             throw new IllegalArgumentException("Placa deve seguir o formato AAA-0000.");
         }
 
@@ -70,13 +70,12 @@ public abstract class VeiculoFactory {
         if (cor == null || cor.isEmpty()) {
             throw new IllegalArgumentException("Cor não pode ser nula ou vazia.");
         }
-
         if (dataHoraEntrada == null) {
             throw new IllegalArgumentException("Data e hora de entrada não podem ser nulas.");
         }
 
-        if (placa.length() != 7) {
-            throw new IllegalArgumentException("Placa deve ter exatamente 7 caracteres.");
+        if (placa.length() != 8) {
+            throw new IllegalArgumentException("Placa deve ter exatamente 8 caracteres (incluindo o hífen).");
         }
 
         try {

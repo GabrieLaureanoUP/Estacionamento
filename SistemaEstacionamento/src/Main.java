@@ -1,14 +1,16 @@
 
-import controllers.EstacionamentoController; // Importar esta classe
+import controllers.EstacionamentoController;
 import controllers.PagamentoController;
 import controllers.TicketController;
 import controllers.VagaController;
 import controllers.VeiculoController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import util.DadosUtil;
 import util.Log;
 import view.EstacionamentoView;
 import view.PagamentoView;
+import view.PrecargaView;
 import view.TicketView;
 import view.VeiculoView;
 
@@ -25,13 +27,19 @@ public class Main {
             TicketController ticketController = new TicketController();
             VagaController vagaController = new VagaController();
             PagamentoController pagamentoController = new PagamentoController();
-
             vagaController.setVagas(estacionamentoController.estacionamentos != null
                     ? estacionamentoController.estacionamentos.getVagas() : null);
             VeiculoView veiculoView = new VeiculoView(veiculoController);
             EstacionamentoView estacionamentoView = new EstacionamentoView(estacionamentoController);
             TicketView ticketView = new TicketView(ticketController, veiculoController, vagaController);
             PagamentoView pagamentoView = new PagamentoView(pagamentoController, ticketController);
+            PrecargaView precargaView = new PrecargaView(estacionamentoController, veiculoController, ticketController, pagamentoController);
+
+            // Limpar arquivos serializados antes de executar a pré-carga
+            DadosUtil.limparArquivosSerializados();
+
+            // Executar pré-carga de dados automaticamente ao iniciar
+            precargaView.carregarDadosTeste();
 
             int opcao = -1;
             do {
@@ -55,7 +63,6 @@ public class Main {
                 } finally {
                     scanner.nextLine();
                 }
-
                 switch (opcao) {
                     case 1:
                         estacionamentoView.menuEstacionamento();
@@ -76,7 +83,7 @@ public class Main {
                         System.out.println("Saindo do sistema...");
                         break;
                     default:
-                        System.out.println("Opção inválida! Escolha um número entre 0 e 5.");
+                        System.out.println("Opção inválida! Escolha um número entre 0 e 4.");
                 }
             } while (opcao != 0);
 

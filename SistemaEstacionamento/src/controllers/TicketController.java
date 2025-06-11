@@ -26,8 +26,10 @@ public class TicketController {
             }
             LocalDateTime dataHoraEntrada = veiculo.getDataHoraEntrada();
             LocalDateTime dataHoraSaida = LocalDateTime.now();
-            int horasTotais = dataHoraEntrada.getHour() - dataHoraSaida.getHour();
-
+            int horasTotais = Math.abs(dataHoraSaida.getHour() - dataHoraEntrada.getHour());
+            if (horasTotais == 0) {
+                horasTotais = 1; // Mínimo de 1 hora
+            }
             double valorTotal = valor * horasTotais;
             Ticket ticket = TicketFactory.criarTicket(id, veiculo, vaga, dataHoraEntrada, dataHoraSaida, valorTotal);
             tickets.add(ticket);
@@ -104,6 +106,14 @@ public class TicketController {
             TicketDAO.salvar(tickets);
         } catch (Exception e) {
             throw new IOException("Erro ao salvar tickets no arquivo: " + e.getMessage(), e);
+        }
+    }
+
+    public List<Ticket> carregar() throws Exception {
+        try {
+            return TicketDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar tickets: " + e.getMessage(), e);
         }
     }
 }

@@ -23,6 +23,16 @@ public class VeiculoController {
 
     public void criarCarro(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
         try {
+            // Verificar se já existe um veículo com esta placa
+            Veiculo existente = buscarVeiculoPorPlaca(placa);
+            if (existente != null) {
+                // Se já existe, apenas atualiza os dados
+                existente.setModelo(modelo);
+                existente.setCor(cor);
+                existente.setDataHoraEntrada(dataHoraEntrada);
+                return;
+            }
+
             veiculos.add(VeiculoFactory.criarCarro(placa, modelo, cor, dataHoraEntrada));
         } catch (Exception e) {
             throw new Exception("Falha ao criar carro.", e);
@@ -31,6 +41,16 @@ public class VeiculoController {
 
     public void criarMoto(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
         try {
+            // Verificar se já existe um veículo com esta placa
+            Veiculo existente = buscarVeiculoPorPlaca(placa);
+            if (existente != null) {
+                // Se já existe, apenas atualiza os dados
+                existente.setModelo(modelo);
+                existente.setCor(cor);
+                existente.setDataHoraEntrada(dataHoraEntrada);
+                return;
+            }
+
             veiculos.add(VeiculoFactory.criarMoto(placa, modelo, cor, dataHoraEntrada));
         } catch (Exception e) {
             throw new Exception("Falha ao criar moto.", e);
@@ -106,8 +126,16 @@ public class VeiculoController {
             VeiculoDAO.salvar(veiculos);
         } catch (IOException e) {
             throw e;
-        } catch (Exception e) { // Para qualquer outra exceção inesperada
-            throw new IOException("Erro inesperado ao salvar dados.", e); // Envolve em IOException para consistência
+        } catch (Exception e) {
+            throw new IOException("Erro inesperado ao salvar dados.", e);
+        }
+    }
+
+    public List<Veiculo> carregar() throws Exception {
+        try {
+            return VeiculoDAO.carregar();
+        } catch (Exception e) {
+            throw new Exception("Erro ao carregar vagas.", e);
         }
     }
 }
