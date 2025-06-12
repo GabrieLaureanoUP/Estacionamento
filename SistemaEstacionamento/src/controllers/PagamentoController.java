@@ -30,6 +30,8 @@ public class PagamentoController {
         try {
             Pagamento pagamento = PagamentoFactory.criarPagamento(id, ticket, valor, formaDePagamento);
             pagamentos.add(pagamento);
+
+            
             if (pagamento != null) {
                 if (ticket.getVeiculo().getClass() == Moto.class) {
                     ticket.getVaga().alterarDisponibilidadeMoto(true);
