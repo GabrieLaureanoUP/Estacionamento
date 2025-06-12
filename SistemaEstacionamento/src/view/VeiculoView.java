@@ -93,17 +93,20 @@ public class VeiculoView {
 
     private void listarVeiculos() throws Exception {
         System.out.println("\n=== Lista de Veículos ===");
-        List<String> veiculos = veiculoController.listarVeiculos();
 
-        if (veiculos.isEmpty()) {
+        List<Veiculo> todosVeiculos = veiculoController.getVeiculos();
+
+        if (todosVeiculos.isEmpty()) {
             System.out.println("Não há veículos cadastrados.");
             return;
         }
 
-        veiculos.forEach(veiculo -> {
+        for (Veiculo veiculo : todosVeiculos) {
             System.out.println("-------------------------");
-            System.out.println(veiculo);
-        });
+            String tipoVeiculo = veiculo instanceof Carro ? "Carro" : "Moto";
+            System.out.println("Tipo: " + tipoVeiculo);
+            System.out.println(veiculo.toString());
+        }
     }
 
     private void cadastrarCarro() throws Exception {

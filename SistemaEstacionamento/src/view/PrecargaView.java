@@ -83,7 +83,6 @@ public class PrecargaView {
                     ticketController.gerarTicket(moto1, vagaMoto1, 5.0);
                 }
             }
-
             try {
                 List<Ticket> tickets = ticketController.getTickets();
                 if (!tickets.isEmpty()) {
@@ -92,6 +91,17 @@ public class PrecargaView {
                 }
             } catch (Exception e) {
                 System.err.println("Erro ao processar tickets: " + e.getMessage());
+            }
+
+            try {
+                List<Veiculo> veiculos = veiculoController.listarVeiculos();
+
+                veiculoController.salvar();
+
+                ticketController.salvar();
+                pagamentoController.salvar();
+            } catch (Exception e) {
+                System.err.println("Erro ao salvar dados da pré-carga: " + e.getMessage());
             }
 
             System.out.println("Pré-carga concluída");

@@ -52,10 +52,9 @@ public class VeiculoController {
         }
     }
 
-    public List<String> listarVeiculos() throws Exception {
+    public List<Veiculo> listarVeiculos() throws Exception {
         try {
-
-            return veiculos.stream().map(Veiculo::toString).toList();
+            return new ArrayList<>(veiculos);
         } catch (Exception e) {
             throw new Exception("Erro ao listar veículos: " + e.getMessage(), e);
         }
@@ -96,7 +95,7 @@ public class VeiculoController {
     }
 
     public void salvar() throws IOException {
-        try{
+        try {
             VeiculoDAO.salvar(veiculos);
         } catch (IOException e) {
             throw new IOException("Erro ao salvar veículos: " + e.getMessage(), e);
@@ -104,7 +103,7 @@ public class VeiculoController {
     }
 
     public List<Veiculo> carregar() throws Exception {
-        try{
+        try {
             return VeiculoDAO.carregar();
         } catch (Exception e) {
             throw new Exception("Erro ao carregar veículos: " + e.getMessage(), e);

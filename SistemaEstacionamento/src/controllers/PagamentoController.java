@@ -17,15 +17,26 @@ import dal.VagaDAO;
 public class PagamentoController {
 
     List<Pagamento> pagamentos;
+    private VagaOcupadaController vagaOcupadaController;
 
     public PagamentoController() {
         pagamentos = new ArrayList<Pagamento>();
+        this.vagaOcupadaController = null;
+    }
+
+    public PagamentoController(VagaOcupadaController vagaOcupadaController) {
+        pagamentos = new ArrayList<Pagamento>();
+        this.vagaOcupadaController = vagaOcupadaController;
+    }
+
+    public void setVagaOcupadaController(VagaOcupadaController vagaOcupadaController) {
+        this.vagaOcupadaController = vagaOcupadaController;
     }
 
     public String pagar(Ticket ticket, double valor, String formaDePagamento) throws Exception {
         int id = 1;
         if (!pagamentos.isEmpty()) {
-            id = pagamentos.getLast().getId();
+            id = pagamentos.getLast().getId() + 1;
         }
         try {
             Pagamento pagamento = PagamentoFactory.criarPagamento(id, ticket, valor, formaDePagamento);
@@ -36,6 +47,18 @@ public class PagamentoController {
                 } else {
                     ticket.getVaga().alterarDisponibilidade(true);
                 }
+
+                ticket.getVeiculo().setIdVaga(0);
+
+                if (this.vagaOcupadaController != null) {
+                    this.vagaOcupadaController.removerVagaOcupada(ticket.getVaga().getNumero());
+                    try {
+                        this.vagaOcupadaController.salvar();
+                    } catch (IOException e) {
+                        System.err.println("Erro ao salvar vagas ocupadas: " + e.getMessage());
+                    }
+                }
+
                 return "pagamento criado com sucesso!";
             }
             return "pagamento nao criado!";
@@ -87,7 +110,7 @@ public class PagamentoController {
     }
 
     public void salvar() throws IOException, ClassNotFoundException {
-        try{
+        try {
             PagamentoDAO.salvar(pagamentos);
         } catch (IOException e) {
             throw new IOException("Erro ao salvar pagamentos: " + e.getMessage(), e);

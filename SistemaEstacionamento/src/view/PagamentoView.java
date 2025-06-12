@@ -2,7 +2,6 @@ package view;
 
 import controllers.PagamentoController;
 import controllers.TicketController;
-import dal.PagamentoDAO;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -101,7 +100,8 @@ public class PagamentoView {
         try {
             System.out.println("\n=== Realizar Pagamento ===");
             System.out.print("ID do Ticket: ");
-            int ticketId = scanner.nextInt();// Limpar buffer
+            int ticketId = scanner.nextInt();
+            scanner.nextLine();
 
             Ticket ticket = ticketController.getTicketById(ticketId);
             if (ticket == null) {
@@ -117,8 +117,11 @@ public class PagamentoView {
             System.out.print("Forma de pagamento (DINHEIRO, CARTAO_CREDITO, CARTAO_DEBITO, PIX): ");
             String formaPagamento = scanner.nextLine().toUpperCase();
 
+            int numeroVaga = ticket.getVaga().getNumero();
             String resultado = pagamentoController.pagar(ticket, valor, formaPagamento);
             System.out.println(resultado);
+            System.out.println("Vaga " + numeroVaga + " liberada com sucesso!");
+
             try {
                 pagamentoController.salvar();
                 System.out.println("Pagamento salvo com sucesso!");
@@ -162,7 +165,7 @@ public class PagamentoView {
 
         System.out.print("ID do pagamento para editar: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Limpar buffer
+        scanner.nextLine();
 
         boolean encontrado = false;
         for (Pagamento pg : pagamentoController.getPagamentos()) {

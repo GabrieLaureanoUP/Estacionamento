@@ -39,10 +39,19 @@ public class VagaOcupadaController {
         return null;
     }
 
+    public boolean removerVagaOcupada(int numeroVaga) {
+        VagaOcupada vagaOcupada = buscarVagaOcupadaPorNumero(numeroVaga);
+        if (vagaOcupada != null) {
+            vagasOcupadas.remove(vagaOcupada);
+            return true;
+        }
+        return false;
+    }
+
     public void salvar() throws IOException, ClassNotFoundException {
-        try{
+        try {
             VagaOcupadaDAO.salvar(vagasOcupadas);
-        } catch (IOException  e) {
+        } catch (IOException e) {
             throw new IOException("Erro ao salvar vagas ocupadas.", e);
         }
     }

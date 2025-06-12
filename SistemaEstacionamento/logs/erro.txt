@@ -5,3 +5,8 @@
 [11-06-202549 19:03:49] Erro na pré-carga: Falha ao criar moto.
 [11-06-202559 19:28:59] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.
 [11-06-202519 19:29:19] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.
+[11-06-202553 21:24:53] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.
+[11-06-202525 21:43:25] Um erro inesperado ocorreu no sistema principal: null
+[11-06-202525 21:43:25] Por favor, verifique o log de erros para mais detalhes.
+[11-06-20258 21:50:08] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.
+[11-06-20257 21:51:07] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.

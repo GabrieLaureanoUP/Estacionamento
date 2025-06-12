@@ -27,7 +27,7 @@ public class Main {
             VeiculoController veiculoController = new VeiculoController();
             TicketController ticketController = new TicketController();
             VagaController vagaController = new VagaController();
-            PagamentoController pagamentoController = new PagamentoController();
+            PagamentoController pagamentoController = new PagamentoController(vagaOcupadaController);
 
             vagaController.setVagas(estacionamentoController.estacionamentos != null
                     ? estacionamentoController.estacionamentos.getVagas() : null);
