@@ -17,7 +17,7 @@ public class TicketController {
         this.tickets = tickets;
     }
 
-    public Ticket gerarTicket(Veiculo veiculo, Vaga vaga, double valor) throws Exception {
+    public Ticket gerarTicket(Veiculo veiculo, Vaga vaga) throws Exception {
         int id = 1;
         try {
             if (!tickets.isEmpty()) {
@@ -29,7 +29,8 @@ public class TicketController {
             if (horasTotais == 0) {
                 horasTotais = 1;
             }
-            double valorTotal = valor * horasTotais;
+            double valorPorHora = veiculo.getValorPorHoras();
+            double valorTotal = valorPorHora * horasTotais;
             Ticket ticket = TicketFactory.criarTicket(id, veiculo, vaga, dataHoraEntrada, dataHoraSaida, valorTotal);
             tickets.add(ticket);
             return ticket;
@@ -67,7 +68,7 @@ public class TicketController {
         }
     }
 
-    public boolean atualizarTicket(int id, Veiculo veiculo, Vaga vaga, LocalDateTime dataHoraEntrada, LocalDateTime dataHoraSaida, double valor) throws Exception {
+    public boolean atualizarTicket(int id, Veiculo veiculo, Vaga vaga, LocalDateTime dataHoraEntrada, LocalDateTime dataHoraSaida) throws Exception {
         try {
             Ticket ticket = getTicketById(id);
             if (ticket != null) {
@@ -75,7 +76,15 @@ public class TicketController {
                 ticket.setVaga(vaga);
                 ticket.setDataHoraEntrada(dataHoraEntrada);
                 ticket.setDataHoraSaida(dataHoraSaida);
-                ticket.setValor(valor);
+
+                int horasTotais = Math.abs(dataHoraSaida.getHour() - dataHoraEntrada.getHour());
+                if (horasTotais < 0) {
+                    horasTotais = 1;
+                }
+                double valorPorHora = veiculo.getValorPorHoras();
+                double valorTotal = valorPorHora * horasTotais;
+                ticket.setValor(valorTotal);
+
                 return true;
             }
             return false;

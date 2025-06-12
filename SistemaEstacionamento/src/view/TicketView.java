@@ -95,11 +95,10 @@ public class TicketView {
                 return;
             }
 
-            System.out.print("Valor da tarifa/hora: ");
-            double valor = scanner.nextDouble();
-            scanner.nextLine();
+            double valorPorHora = veiculo.getValorPorHoras();
+            System.out.println("Valor da tarifa/hora: " + valorPorHora);
 
-            var ticket = ticketController.gerarTicket(veiculo, vaga, valor);
+            var ticket = ticketController.gerarTicket(veiculo, vaga);
             System.out.println("Ticket gerado com sucesso: " + ticket);
         } catch (Exception e) {
             System.out.println("Erro ao gerar ticket: " + e.getMessage());
@@ -133,15 +132,13 @@ public class TicketView {
                 System.out.println("Vaga não encontrada!");
                 return;
             }
-
             LocalDateTime dataHoraEntrada = LocalDateTime.now().minusHours(1);
             LocalDateTime dataHoraSaida = LocalDateTime.now();
 
-            System.out.print("Valor do ticket: ");
-            double valor = scanner.nextDouble();
-            scanner.nextLine();
+            double valorPorHora = veiculo.getValorPorHoras();
+            System.out.println("Valor por hora: " + valorPorHora);
 
-            boolean sucesso = ticketController.atualizarTicket(id, veiculo, vaga, dataHoraEntrada, dataHoraSaida, valor);
+            boolean sucesso = ticketController.atualizarTicket(id, veiculo, vaga, dataHoraEntrada, dataHoraSaida);
             if (sucesso) {
                 System.out.println("Ticket atualizado com sucesso!");
             } else {
