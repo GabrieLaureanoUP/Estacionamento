@@ -10,3 +10,5 @@
 [11-06-202525 21:43:25] Por favor, verifique o log de erros para mais detalhes.
 [11-06-20258 21:50:08] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.
 [11-06-20257 21:51:07] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.
+[11-06-202534 22:04:34] Erro ao definir pagamentos: Lista de pagamentos não pode ser nula ou vazia.
+[11-06-202527 22:13:27] [Controller] Erro ao buscar vaga por número: 1 - Cannot invoke "java.util.List.iterator()" because "this.vagas" is null

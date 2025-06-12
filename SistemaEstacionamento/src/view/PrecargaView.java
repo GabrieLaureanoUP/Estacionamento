@@ -72,15 +72,14 @@ public class PrecargaView {
                         vagaMoto1 = vaga;
                     }
                 }
-
                 if (vagaCarro1 != null) {
-                    ticketController.gerarTicket(carro1, vagaCarro1, 10.0);
+                    ticketController.gerarTicket(carro1, vagaCarro1);
                 }
                 if (vagaCarro2 != null) {
-                    ticketController.gerarTicket(carro2, vagaCarro2, 10.0);
+                    ticketController.gerarTicket(carro2, vagaCarro2);
                 }
                 if (vagaMoto1 != null) {
-                    ticketController.gerarTicket(moto1, vagaMoto1, 5.0);
+                    ticketController.gerarTicket(moto1, vagaMoto1);
                 }
             }
             try {
