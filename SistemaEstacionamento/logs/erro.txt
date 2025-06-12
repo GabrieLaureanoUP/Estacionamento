@@ -16,3 +16,7 @@
 [12-06-202519 19:33:19] Por favor, verifique o log de erros para mais detalhes.
 [12-06-202527 19:33:27] Um erro inesperado ocorreu no sistema principal: Cannot invoke "model.Estacionamento.getVagas()" because "estacionamentoController.estacionamentos" is null
 [12-06-202527 19:33:27] Por favor, verifique o log de erros para mais detalhes.
+[12-06-202520 19:35:20] Um erro inesperado ocorreu no sistema principal: Cannot invoke "model.Estacionamento.getVagas()" because "estacionamentoController.estacionamentos" is null
+[12-06-202520 19:35:20] Por favor, verifique o log de erros para mais detalhes.
+[12-06-202547 19:35:47] Um erro inesperado ocorreu no sistema principal: Cannot invoke "model.Estacionamento.getVagas()" because "estacionamentoController.estacionamentos" is null
+[12-06-202547 19:35:47] Por favor, verifique o log de erros para mais detalhes.
