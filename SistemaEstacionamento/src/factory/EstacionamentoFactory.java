@@ -1,6 +1,7 @@
 package factory;
 
 import controllers.VagaController;
+import java.util.ArrayList;
 import java.util.List;
 import model.Estacionamento;
 import model.Vaga;
@@ -43,7 +44,8 @@ public abstract class EstacionamentoFactory {
         }
 
         try{
-            VagaController vagaController = new VagaController();
+            List<Vaga> vagas = new ArrayList<>();
+            VagaController vagaController = new VagaController(vagas);
             List<Vaga> vagasProntas = vagaController.criarVagas(numeroDeVagas);
             return vagasProntas;
         } catch (Exception e) {

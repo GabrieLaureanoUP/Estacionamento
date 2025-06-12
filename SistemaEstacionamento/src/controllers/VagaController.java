@@ -4,13 +4,16 @@ import dal.VagaDAO;
 import enums.StatusVaga;
 import factory.VagaFactory;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import model.Vaga;
 
 public class VagaController {
 
-    private List<Vaga> vagas = new ArrayList<>();
+    private List<Vaga> vagas;
+
+    public VagaController(List<Vaga> vagas) {
+        this.vagas = vagas;
+    }
 
     public List<Vaga> criarVagas(int numeroDeVagas) throws IOException, ClassNotFoundException {
 

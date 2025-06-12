@@ -16,10 +16,10 @@ import model.Veiculo;
 
 public class EstacionamentoView {
 
-    private final EstacionamentoController estacionamentoController;
-    private final VeiculoController veiculoController;
-    private final VagaOcupadaController vagaOcupadaController;
-    private final Scanner scanner;
+    private EstacionamentoController estacionamentoController;
+    private VeiculoController veiculoController;
+    private VagaOcupadaController vagaOcupadaController;
+    private Scanner scanner;
 
     public EstacionamentoView(EstacionamentoController estacionamentoController,
             VeiculoController veiculoController,

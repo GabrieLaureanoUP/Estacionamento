@@ -5,8 +5,14 @@ import controllers.TicketController;
 import controllers.VagaController;
 import controllers.VagaOcupadaController;
 import controllers.VeiculoController;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import model.Pagamento;
+import model.Ticket;
+import model.VagaOcupada;
+import model.Veiculo;
 import util.DadosUtil;
 import util.Log;
 import view.EstacionamentoView;
@@ -22,12 +28,17 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         try {
-            VagaOcupadaController vagaOcupadaController = new VagaOcupadaController();
-            EstacionamentoController estacionamentoController = new EstacionamentoController(vagaOcupadaController);
-            VeiculoController veiculoController = new VeiculoController();
-            TicketController ticketController = new TicketController();
-            VagaController vagaController = new VagaController();
-            PagamentoController pagamentoController = new PagamentoController(vagaOcupadaController);
+            List<Pagamento> pagamentos = new ArrayList<>();
+            List<Ticket> tickets = new ArrayList<>();
+            List<VagaOcupada> vagasOcupadas = new ArrayList<>();
+            List<Veiculo> veiculos = new ArrayList<>();
+            
+            VagaOcupadaController vagaOcupadaController = new VagaOcupadaController(vagasOcupadas);
+            EstacionamentoController estacionamentoController = new EstacionamentoController(vagasOcupadas);
+            VeiculoController veiculoController = new VeiculoController(veiculos);
+            TicketController ticketController = new TicketController(tickets);
+            VagaController vagaController = new VagaController(estacionamentoController.estacionamentos.getVagas());
+            PagamentoController pagamentoController = new PagamentoController(vagaOcupadaController, pagamentos);
 
             vagaController.setVagas(estacionamentoController.estacionamentos != null
                     ? estacionamentoController.estacionamentos.getVagas() : null);
@@ -48,6 +59,7 @@ public class Main {
                 System.out.println("2. Gerenciar Veículos");
                 System.out.println("3. Gerenciar Tickets");
                 System.out.println("4. Gerenciar Pagamentos");
+                System.out.println("5. Gerar fatorial de um numero");
                 System.out.println("0. Sair");
                 System.out.print("Escolha uma opção: ");
 
@@ -79,6 +91,19 @@ public class Main {
                     case 4:
                         pagamentoView.menuPagamento();
                         break;
+                    case 5:
+                        System.out.print("Digite um número para calcular o fatorial: ");
+                        int numero = scanner.nextInt();
+                        if (numero < 0) {
+                            System.out.println("Fatorial não definido para números negativos.");
+                        } else {
+                            int fatorial = 1;
+                            for (int i = 1; i <= numero; i++) {
+                                fatorial *= i;
+                            }
+                            System.out.println("Fatorial de " + numero + " é: " + fatorial);
+                        }
+                    break;
                     case 0:
                         System.out.println("Saindo do sistema...");
                         break;

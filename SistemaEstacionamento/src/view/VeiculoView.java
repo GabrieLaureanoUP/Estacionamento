@@ -10,8 +10,8 @@ import model.Veiculo;
 
 public class VeiculoView {
 
-    private final VeiculoController veiculoController;
-    private final Scanner scanner;
+    private  VeiculoController veiculoController;
+    private  Scanner scanner;
 
     public VeiculoView(VeiculoController veiculoController) {
         this.veiculoController = veiculoController;

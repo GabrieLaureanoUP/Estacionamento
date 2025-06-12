@@ -6,14 +6,15 @@ import model.Carro;
 import model.Estacionamento;
 import model.Moto;
 import model.Vaga;
+import model.VagaOcupada;
 
 public class EstacionamentoController {
 
     public Estacionamento estacionamentos;
     private VagaOcupadaController vagaOcupadaController;
 
-    public EstacionamentoController() {
-        this.vagaOcupadaController = new VagaOcupadaController();
+    public EstacionamentoController(List<VagaOcupada> vagasOcupadas) {
+        this.vagaOcupadaController = new VagaOcupadaController(vagasOcupadas);
     }
 
     public EstacionamentoController(VagaOcupadaController vagaOcupadaController) {

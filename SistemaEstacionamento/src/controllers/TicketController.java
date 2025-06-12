@@ -4,7 +4,6 @@ import dal.TicketDAO;
 import factory.TicketFactory;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import model.Ticket;
 import model.Vaga;
@@ -14,8 +13,8 @@ public class TicketController {
 
     private List<Ticket> tickets;
 
-    public TicketController() {
-        this.tickets = new ArrayList<>();
+    public TicketController(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     public Ticket gerarTicket(Veiculo veiculo, Vaga vaga, double valor) throws Exception {

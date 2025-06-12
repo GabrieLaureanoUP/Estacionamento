@@ -24,8 +24,8 @@ public class PagamentoController {
         this.vagaOcupadaController = null;
     }
 
-    public PagamentoController(VagaOcupadaController vagaOcupadaController) {
-        pagamentos = new ArrayList<Pagamento>();
+    public PagamentoController(VagaOcupadaController vagaOcupadaController, List<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
         this.vagaOcupadaController = vagaOcupadaController;
     }
 

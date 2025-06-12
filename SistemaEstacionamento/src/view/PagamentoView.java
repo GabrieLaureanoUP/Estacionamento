@@ -11,9 +11,9 @@ import model.Ticket;
 
 public class PagamentoView {
 
-    private final PagamentoController pagamentoController;
-    private final TicketController ticketController;
-    private final Scanner scanner;
+    private  PagamentoController pagamentoController;
+    private  TicketController ticketController;
+    private  Scanner scanner;
 
     public PagamentoView(PagamentoController pagamentoController, TicketController ticketController) {
         this.pagamentoController = pagamentoController;

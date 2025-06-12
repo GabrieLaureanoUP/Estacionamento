@@ -14,10 +14,10 @@ import model.Veiculo;
 
 public class PrecargaView {
 
-    private final EstacionamentoController estacionamentoController;
-    private final VeiculoController veiculoController;
-    private final TicketController ticketController;
-    private final PagamentoController pagamentoController;
+    private EstacionamentoController estacionamentoController;
+    private VeiculoController veiculoController;
+    private TicketController ticketController;
+    private PagamentoController pagamentoController;
 
     public PrecargaView(
             EstacionamentoController estacionamentoController,
