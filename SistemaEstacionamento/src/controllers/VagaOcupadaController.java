@@ -3,7 +3,6 @@ package controllers;
 import dal.VagaOcupadaDAO;
 import factory.VagaOcupadaFactory;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import model.Vaga;
 import model.VagaOcupada;
@@ -13,8 +12,8 @@ public class VagaOcupadaController {
 
     private List<VagaOcupada> vagasOcupadas;
 
-    public VagaOcupadaController() {
-        vagasOcupadas = new ArrayList<>();
+    public VagaOcupadaController(List<VagaOcupada> vagasOcupadas) {
+        this.vagasOcupadas = vagasOcupadas;
     }
 
     public String adicionarVagaOcupada(Vaga vaga, Veiculo veiculo) throws Exception, IllegalStateException {

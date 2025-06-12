@@ -12,8 +12,8 @@ public class VeiculoController {
 
     private List<Veiculo> veiculos;
 
-    public VeiculoController() throws Exception {
-        veiculos = new ArrayList<>();
+    public VeiculoController(List<Veiculo> veiculos) throws Exception {
+        this.veiculos = veiculos;
     }
 
     public void criarCarro(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
