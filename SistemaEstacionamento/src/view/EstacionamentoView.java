@@ -79,24 +79,24 @@ public class EstacionamentoView {
     }
 
     private void cadastrarEstacionamento() throws Exception {
-        try{
+        try {
             System.out.print("Nome: ");
             String nome = scanner.nextLine();
             System.out.print("Número de vagas: ");
             int vagas = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
             System.out.print("Endereço: ");
             String endereco = scanner.nextLine();
             System.out.print("Telefone: ");
             String telefone = scanner.nextLine();
             System.out.print("Email: ");
             String email = scanner.nextLine();
-            if(estacionamentoController.estacionamentos != null) {
+            if (estacionamentoController.estacionamentos != null) {
                 System.out.println("Estacionamento já cadastrado! Por favor, edite o estacionamento existente.");
-                
-            }else{
-            estacionamentoController.cadastrarEstacionamento(nome, vagas, endereco, telefone, email);
-                System.out.println("Estacionamento cadastrado com sucesso!"); 
+
+            } else {
+                estacionamentoController.cadastrarEstacionamento(nome, vagas, endereco, telefone, email);
+                System.out.println("Estacionamento cadastrado com sucesso!");
             }
         } catch (Exception e) {
             System.out.println("Erro ao cadastrar estacionamento: " + e.getMessage());

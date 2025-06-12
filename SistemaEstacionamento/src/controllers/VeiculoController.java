@@ -18,10 +18,8 @@ public class VeiculoController {
 
     public void criarCarro(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
         try {
-            // Verificar se já existe um veículo com esta placa
             Veiculo existente = buscarVeiculoPorPlaca(placa);
             if (existente != null) {
-                // Se já existe, apenas atualiza os dados
                 existente.setModelo(modelo);
                 existente.setCor(cor);
                 existente.setDataHoraEntrada(dataHoraEntrada);
@@ -36,10 +34,8 @@ public class VeiculoController {
 
     public void criarMoto(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
         try {
-            // Verificar se já existe um veículo com esta placa
             Veiculo existente = buscarVeiculoPorPlaca(placa);
             if (existente != null) {
-                // Se já existe, apenas atualiza os dados
                 existente.setModelo(modelo);
                 existente.setCor(cor);
                 existente.setDataHoraEntrada(dataHoraEntrada);

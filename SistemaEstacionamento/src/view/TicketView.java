@@ -87,7 +87,7 @@ public class TicketView {
 
             System.out.print("Número da vaga: ");
             int numeroVaga = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
 
             Vaga vaga = vagaController.buscarVagaPorNumero(numeroVaga);
             if (vaga == null) {
@@ -97,7 +97,7 @@ public class TicketView {
 
             System.out.print("Valor da tarifa/hora: ");
             double valor = scanner.nextDouble();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
 
             var ticket = ticketController.gerarTicket(veiculo, vaga, valor);
             System.out.println("Ticket gerado com sucesso: " + ticket);
@@ -115,7 +115,7 @@ public class TicketView {
         try {
             System.out.print("ID do ticket para atualizar: ");
             int id = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer            System.out.print("Placa do veículo: ");
+            scanner.nextLine();
             String placa = scanner.nextLine();
             Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
 
@@ -126,7 +126,7 @@ public class TicketView {
 
             System.out.print("Número da vaga: ");
             int numeroVaga = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
 
             Vaga vaga = vagaController.buscarVagaPorNumero(numeroVaga);
             if (vaga == null) {
@@ -134,12 +134,12 @@ public class TicketView {
                 return;
             }
 
-            LocalDateTime dataHoraEntrada = LocalDateTime.now().minusHours(1); // Exemplo: entrada há 1 hora
+            LocalDateTime dataHoraEntrada = LocalDateTime.now().minusHours(1);
             LocalDateTime dataHoraSaida = LocalDateTime.now();
 
             System.out.print("Valor do ticket: ");
             double valor = scanner.nextDouble();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
 
             boolean sucesso = ticketController.atualizarTicket(id, veiculo, vaga, dataHoraEntrada, dataHoraSaida, valor);
             if (sucesso) {
@@ -156,7 +156,7 @@ public class TicketView {
         try {
             System.out.print("ID do ticket para remover: ");
             int id = scanner.nextInt();
-            scanner.nextLine(); // Limpar buffer
+            scanner.nextLine();
 
             boolean sucesso = ticketController.removerTicket(id);
             if (sucesso) {

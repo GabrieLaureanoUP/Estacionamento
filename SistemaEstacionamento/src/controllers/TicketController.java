@@ -28,7 +28,7 @@ public class TicketController {
             LocalDateTime dataHoraSaida = LocalDateTime.now();
             int horasTotais = Math.abs(dataHoraSaida.getHour() - dataHoraEntrada.getHour());
             if (horasTotais == 0) {
-                horasTotais = 1; // Mínimo de 1 hora
+                horasTotais = 1;
             }
             double valorTotal = valor * horasTotais;
             Ticket ticket = TicketFactory.criarTicket(id, veiculo, vaga, dataHoraEntrada, dataHoraSaida, valorTotal);

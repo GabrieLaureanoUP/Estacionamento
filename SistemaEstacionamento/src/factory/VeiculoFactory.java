@@ -39,7 +39,6 @@ public abstract class VeiculoFactory {
     }
 
     public static Moto criarMoto(String placa, String modelo, String cor, LocalDateTime dataHoraEntrada) throws Exception {
-        // Verificar se os parâmetros básicos são válidos
         if (placa == null || placa.isEmpty()) {
             throw new IllegalArgumentException("Placa não pode ser nula ou vazia.");
         }
